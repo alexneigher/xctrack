@@ -1,0 +1,27 @@
+development:
+  adapter: postgresql
+  database: xctrack_development
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  database: xctrack_production
+  pool: 5
+  timeout: 5000
+
+staging:
+  adapter: postgresql
+  database: xctrack_development
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+test: &test
+  adapter: postgresql
+  database: xctrack_test
+  host: localhost
+  pool: 5
+  timeout: 5000
+

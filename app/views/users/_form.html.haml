@@ -1,0 +1,30 @@
+= form_for @user, :html => { :class => "form-horizontal user" } do |f|
+  - if @user.errors.any?
+    #error_expl.panel.panel-danger
+      .panel-heading
+        %h3.panel-title
+          = pluralize(@user.errors.count, "error")
+          prohibited this user from being saved:
+      .panel-body
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
+  .form-group
+    .row
+      .col-md-6
+        %label Name
+        = f.text_field :name, class: 'form-control'
+      .col-md-6
+        %label
+          Share URL
+        .form-inline
+          %label http://share.delorme.com/
+          = f.text_field :share_url, class: 'form-control'
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit nil, :class => 'btn btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")),
+        users_path, :class => 'btn btn-default'
+
+
+
