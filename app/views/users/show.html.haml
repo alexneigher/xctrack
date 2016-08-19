@@ -1,11 +1,14 @@
 - model_class = User
 .page-header
-  %h1= t '.title', :default => model_class.model_name.human.titleize
-  .well
-    =@user.name
-  .well
-    %strong
-      Last known position: #{@user.fetch_coordinates.last}
+  %h1= @user.name
+.row
+  .col-md-6
+    .well
+      =link_to 'View on map', root_path(pilot_ids: @user.id)
+  .col-md-6
+    .well
+      %strong
+        Last known position: #{@user.fetch_coordinates.last}
 
 %dl.dl-horizontal
 

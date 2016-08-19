@@ -15,9 +15,13 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
   var marker;
 
+  var query_string = {};
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  var ids = vars[0].split("=")[1];
   $.ajax({
       type: "GET",
-      url: "/fetch_coordinates",
+      url: "/fetch_coordinates?pilot_ids="+ids,
       success: function(data) {
         //each user
         for(var i = 0; i<data.length;i++){
