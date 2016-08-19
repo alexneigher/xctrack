@@ -19,19 +19,38 @@ function initialize() {
       type: "GET",
       url: "/fetch_coordinates",
       success: function(data) {
-        console.log(data);
+        //each user
         for(var i = 0; i<data.length;i++){
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(data[i][1], data[i][0]),
-            map: map,
-            title: 'test'
-          })
-          bounds.extend(marker.position);
-          map.fitBounds(bounds);
-        }
+          //each hash of lat/lon per point for that user (one flight)
+          flight_path_coords = []
 
+          for( var j = 0; j < data[i].length; j++){
+            flight_path_coords.push({lat: parseFloat(data[i][j]['latitude']), lng:parseFloat(data[i][j]['longitude'])})
+
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(parseFloat(data[i][j]['latitude']), parseFloat(data[i][j]['longitude'])),
+              map: map,
+              title: 'test'
+            })
+            bounds.extend(marker.position);
+          }
+          var flightPath = new google.maps.Polyline({
+            path: flight_path_coords,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 1
+          });
+
+          flightPath.setMap(map);
+        }
+        map.fitBounds(bounds);
 
       }
   });
 }
 
+
+function resetbounds(map){
+
+}

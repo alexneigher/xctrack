@@ -2,26 +2,28 @@ class User < ActiveRecord::Base
 
 
   def full_api_url
-    "https://share.delorme.com/feed/Share/#{share_url}"
+    d1 = formatted_datetime(1.day.ago)
+    d2 = formatted_datetime(DateTime.current)
+    "https://share.delorme.com/feed/Share/#{share_url}?d1=#{d1}&d2=#{d2}"
+
   end
 
 
   def fetch_coordinates
-    #returns [longitude, latitude] (weird order)
+    #returns {latitude: x, longitude:y, timestamp: z} hash
     response = HTTParty.get(full_api_url).body
 
     raw_xml = Nokogiri::XML(response)
+    coordinates = CoordinateFetcherService.new(raw_xml).extract_coordinates
 
-    coordinates = parse_xml(raw_xml).split(',').map(&:to_f)
-
-    return [coordinates[0], coordinates[1]]
+    return coordinates
   end
 
   private
 
-    def parse_xml(xml)
-      #returns "value, value, value" as a string
-      xml.css('coordinates').first.text
+
+    def formatted_datetime(datetime)
+      datetime.strftime('%Y-%m-%dT%H:%mZ')
     end
 
 end

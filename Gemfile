@@ -19,8 +19,6 @@ gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'httparty'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 
 # Use jquery as the JavaScript library
@@ -44,6 +42,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end

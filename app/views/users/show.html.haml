@@ -5,7 +5,7 @@
     =@user.name
   .well
     %strong
-      Last known position: #{@user.fetch_coordinates}
+      Last known position: #{@user.fetch_coordinates.last}
 
 %dl.dl-horizontal
 
