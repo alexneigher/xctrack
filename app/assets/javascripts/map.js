@@ -15,7 +15,6 @@ function initialize() {
   var bounds = new google.maps.LatLngBounds();
 
   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-  var marker;
 
   var query_string = {};
   var query = window.location.search.substring(1);
@@ -38,13 +37,29 @@ function initialize() {
           for( var j = 0; j < data[i].length; j++){
             flight_path_coords.push({lat: parseFloat(data[i][j]['latitude']), lng:parseFloat(data[i][j]['longitude'])})
 
-            marker = new google.maps.Marker({
+            var marker = new google.maps.Marker({
               position: new google.maps.LatLng(parseFloat(data[i][j]['latitude']), parseFloat(data[i][j]['longitude'])),
               map: map,
               title: 'test'
-            })
+            });
+
+            var content = '<div id="content">'+
+            '<strong>LATITUDE:</strong> '+ data[i][j]['latitude']+'<br>'+
+            '<strong>LONGITUDE:</strong> '+ data[i][j]['longitude']+'<br>'+
+            '<strong>Time (Local):</strong> '+ data[i][j]['timestamp']+'<br>'+
+            '</div>';
+
+            var infowindow = new google.maps.InfoWindow()
+            google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
+                return function() {
+                    infowindow.setContent(content);
+                    infowindow.open(map,marker);
+                };
+            })(marker,content,infowindow));
+
             bounds.extend(marker.position);
           }
+
           var flightPath = new google.maps.Polyline({
             path: flight_path_coords,
             geodesic: true,
@@ -56,7 +71,6 @@ function initialize() {
           flightPath.setMap(map);
         }
         map.fitBounds(bounds);
-
       }
   });
 }
