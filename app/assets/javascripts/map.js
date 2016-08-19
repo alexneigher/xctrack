@@ -20,7 +20,12 @@ function initialize() {
   var query_string = {};
   var query = window.location.search.substring(1);
   var vars = query.split("&");
-  var ids = vars[0].split("=")[1];
+  var ids;
+  if (vars[0].length > 0){
+    ids = vars[0].split("=")[1];
+  }else{
+    ids = ''
+  }
   $.ajax({
       type: "GET",
       url: "/fetch_coordinates?pilot_ids="+ids,

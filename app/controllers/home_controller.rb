@@ -14,7 +14,7 @@ class HomeController < ApplicationController
 
     def fetch_users
       user_ids = params[:pilot_ids]
-      if user_ids
+      if user_ids.present?
         ids = user_ids.split(',')
         @users = User.where(id: ids)
       else
