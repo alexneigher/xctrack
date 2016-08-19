@@ -1,0 +1,30 @@
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default
+      .panel-heading
+        Log In
+      .panel-body
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group
+            .row
+              .col-md-12
+                %label Email
+                = f.text_field :email, placeholder: 'alex@flyfar.com', class: 'form-control'
+          .form-group
+            .row
+              .col-md-12
+                %label Password
+                = f.password_field :password, autocomplete: "off", class: 'form-control'
+          .form-group
+            .row
+              .col-md-12
+                - if devise_mapping.rememberable?
+                  %label
+                    Remember Me?
+                    = f.check_box :remember_me
+          .form-group
+            .row
+              .col-md-12
+                = f.submit "Log in", class: 'btn btn-success'
+
+        = render "devise/shared/links"

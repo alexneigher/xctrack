@@ -20,7 +20,6 @@ gem 'httparty'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 
 gem "twitter-bootstrap-rails"
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

@@ -7,20 +7,22 @@
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:created_at)
-      %th= t '.actions', :default => t("helpers.actions")
+      - if current_user.admin?
+        %th= t '.actions', :default => t("helpers.actions")
   %tbody
     - @users.each do |user|
       %tr
         %td= link_to user.id, user_path(user)
         %td= user.name
         %td= l user.created_at
-        %td
-          = link_to t('.edit', :default => t("helpers.links.edit")),
-            edit_user_path(user), :class => 'btn btn-default btn-xs'
-          -#
-          = link_to t('.destroy', :default => t("helpers.links.destroy")),
-            user_path(user),
-            :method => :delete,
-            :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-            :class => 'btn btn-xs btn-danger'
+        -if current_user.admin?
+          %td
+            = link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_user_path(user), :class => 'btn btn-default btn-xs'
+            -#
+            = link_to t('.destroy', :default => t("helpers.links.destroy")),
+              user_path(user),
+              :method => :delete,
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-xs btn-danger'
 = link_to t('.new', :default => t("helpers.links.new")), new_user_path, :class => 'btn btn-primary'

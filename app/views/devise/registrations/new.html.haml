@@ -1,0 +1,36 @@
+.row
+  .col-md-8.col-md-offset-2
+    .panel.panel-default
+      .panel-heading
+        Sign Up
+      .panel-body
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = devise_error_messages!
+          .form-group
+            .row
+              .col-md-6
+                %label Name &ast;
+                = f.text_field :name, placeholder: 'Alex Boolean', class: 'form-control'
+              .col-md-6
+                %label Email
+                = f.text_field :email, placeholder: 'alex@flyfar.com', class: 'form-control'
+          .form-group
+            .row.well
+              %label Share URL
+              .form-inline
+                %label http://www.share.delorme.com/
+                = f.text_field :share_url, class: 'form-control'
+          .form-group
+            .row
+              .col-md-6
+                %label Password
+                %em min length 6
+                = f.password_field :password, autocomplete: "off", class: 'form-control'
+              .col-md-6
+                %label Confirm Password
+                = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+          .form-group
+            .row
+              .col-md-6
+                = f.submit "Sign up", class: 'btn btn-success'
+        = render "devise/shared/links"
