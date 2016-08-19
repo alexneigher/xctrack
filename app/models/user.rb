@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
     def parse_xml(xml)
       #returns "value, value, value" as a string
-      xml.css('coordinates').first.text
+      return [] unless xml.css('coordinates').first.text
     end
 
 end
