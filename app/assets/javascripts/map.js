@@ -1,6 +1,8 @@
 $(function(){
   //var google loads from an external script
-  google.maps.event.addDomListener(window, 'load', initialize);
+  if (typeof google !== 'undefined') {
+    google.maps.event.addDomListener(window, 'load', initialize);
+  }
 });
 
 
