@@ -46,6 +46,8 @@ function initialize() {
             var content = '<div id="content">'+
             '<strong>LATITUDE:</strong> '+ data[i][j]['latitude']+'<br>'+
             '<strong>LONGITUDE:</strong> '+ data[i][j]['longitude']+'<br>'+
+            '<strong>Velocity:</strong> '+ data[i][j]['velocity']+'<br>'+
+            '<strong>Elevation:</strong> '+ data[i][j]['elevation']+'<br>'+
             '<strong>Time (Local):</strong> '+ data[i][j]['timestamp']+'<br>'+
             '</div>';
 
