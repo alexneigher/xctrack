@@ -2,11 +2,25 @@
 
 .row
   .col-md-9
-    #googleMap{style: 'width:100%;height:400px;'}
+    #googleMap{style: 'width:100%;height:500px;'}
 
   .col-md-3
-    .well.sidebar-nav
-      %h3 Users
-      %ul.nav.nav-list
+    .well
+
+      %ul.list-group
         -@users.each do |user|
-          %li= link_to user.name, user_path(user)
+          %li.list-group-item
+            .row
+              .col-xs-4.col-md-6
+                -if @rendered_user_ids.include?(user.id)
+                  .btn.btn-success.btn-block
+                    on map
+                -else
+                  = link_to root_path(pilot_ids: (@rendered_user_ids + [user.id]).join(',')), class: ' btn btn-default btn-block' do
+                    add
+              .col-xs-8.col-md-6
+                .text-center
+                  = link_to user.name, user_path(user)
+      .form-group
+        = link_to root_path(pilot_ids: @users.map(&:id).join(',')), class: 'btn btn-sm btn-primary' do
+          Show All

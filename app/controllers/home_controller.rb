@@ -1,8 +1,14 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!
   before_action :fetch_users
 
   def index
+    #scope this by group later
+    @users = User.all
+    if params[:pilot_ids]
+      @rendered_user_ids = params[:pilot_ids].split(',').map(&:to_i)
+    else
+      @rendered_user_ids = @users.map(&:id)
+    end
   end
 
   def fetch_coordinates

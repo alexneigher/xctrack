@@ -18,9 +18,11 @@ class CoordinateFetcherService
 
   private
 
+  #Name
     def format_hash_element(point)
       point_data = point.css('ExtendedData').children
       {
+        name: point_data.at('[@name="Name"]').try(:text).try(:strip),
         latitude: point_data.at('[@name="Latitude"]').try(:text).try(:strip),
         longitude: point_data.at('[@name="Longitude"]').try(:text).try(:strip),
         elevation: elevation(point_data),
