@@ -26,7 +26,7 @@ function initialize() {
   }
   $.ajax({
       type: "GET",
-      url: "/fetch_coordinates?pilot_ids="+ids,
+      url: "/fetch_coordinates?pilots="+ids,
       success: function(data) {
         removeLoading();
         //each user

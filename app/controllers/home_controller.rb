@@ -4,8 +4,8 @@ class HomeController < ApplicationController
   def index
     #scope this by group later
     @users = User.all
-    if params[:pilot_ids]
-      @rendered_user_ids = params[:pilot_ids].split(',').map(&:to_i)
+    if params[:pilots]
+      @rendered_user_ids = params[:pilots].split(',').map(&:to_i)
     else
       @rendered_user_ids = @users.map(&:id)
     end
@@ -19,7 +19,7 @@ class HomeController < ApplicationController
   private
 
     def fetch_users
-      user_ids = params[:pilot_ids]
+      user_ids = params[:pilots]
       if user_ids.present?
         ids = user_ids.split(',')
         @users = User.where(id: ids)
