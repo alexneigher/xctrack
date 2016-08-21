@@ -12,7 +12,7 @@
 
 %dl.dl-horizontal
 
-= link_to t('.back', :default => t("helpers.links.back")), users_path, :class => 'btn btn-default'
+= link_to t('.back', :default => t("helpers.links.back")), root_path, :class => 'btn btn-default'
 - if @user == current_user
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(@user), :class => 'btn btn-default'
   -#

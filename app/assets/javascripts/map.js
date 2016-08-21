@@ -12,70 +12,64 @@ function initialize() {
     zoom:4,
     mapTypeId:google.maps.MapTypeId.TERRAIN
   };
+
   var bounds = new google.maps.LatLngBounds();
 
   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-  var query_string = {};
-  var query = window.location.search.substring(1);
-  var vars = query.split("&");
+  $('.pilot').each(function(){
+    var flight_path_coords = []
+    $(this).find('.waypoint').each(function(){
+      var $waypoint = $(this);
 
-  var ids = '';
-  if (vars[0].length > 0){
-    ids = vars[0].split("=")[1];
-  }
-  $.ajax({
-      type: "GET",
-      url: "/fetch_coordinates?pilots="+ids,
-      success: function(data) {
-        removeLoading();
-        //each user
-        for(var i = 0; i < data.length; i++){
-          //each hash of lat/lon per point for that user (one flight)
-          flight_path_coords = []
+      var latitude = $waypoint.data('latitude');
+      var longitude = $waypoint.data('longitude');
+      var elevation = $waypoint.data('elevation');
+      var velocity = $waypoint.data('velocity');
+      var name = $waypoint.data('name');
+      var timestamp = $waypoint.data('timestamp');
 
-          for( var j = 0; j < data[i].length; j++){
-            flight_path_coords.push({lat: parseFloat(data[i][j]['latitude']), lng:parseFloat(data[i][j]['longitude'])})
+      flight_path_coords.push({lat: parseFloat(latitude), lng: parseFloat(longitude)})
 
-            var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(parseFloat(data[i][j]['latitude']), parseFloat(data[i][j]['longitude'])),
-              map: map,
-              label: data[i][j]['name'][0],
-            });
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(latitude, longitude),
+        map: map,
+        label: name,
+      });
 
-            var content = '<div id="content">'+
-            '<strong>Name:</strong> '+ data[i][j]['name']+'<br>'+
-            '<strong>Latitude:</strong> '+ data[i][j]['latitude']+'<br>'+
-            '<strong>Longitude:</strong> '+ data[i][j]['longitude']+'<br>'+
-            '<strong>Velocity:</strong> '+ data[i][j]['velocity']+'<br>'+
-            '<strong>Elevation:</strong> '+ data[i][j]['elevation']+'<br>'+
-            '<strong>Time (Local):</strong> '+ data[i][j]['timestamp']+'<br>'+
-            '</div>';
+      bounds.extend(marker.position);
+      var infowindow = new google.maps.InfoWindow()
+      var content = '<div id="content">'+
+        '<strong>Name:</strong> '+ name +'<br>'+
+        '<strong>Latitude:</strong> '+ latitude +'<br>'+
+        '<strong>Longitude:</strong> '+ longitude +'<br>'+
+        '<strong>Velocity:</strong> '+ velocity +'<br>'+
+        '<strong>Elevation:</strong> '+ elevation +'<br>'+
+        '<strong>Time (Local):</strong> '+ timestamp +'<br>'+
+        '</div>';
 
-            var infowindow = new google.maps.InfoWindow()
-            google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
-                return function() {
-                    infowindow.setContent(content);
-                    infowindow.open(map,marker);
-                };
-            })(marker,content,infowindow));
+      google.maps.event.addListener(marker,'click', (function(marker, content, infowindow){
+        return function() {
+          infowindow.setContent(content);
+          infowindow.open(map, marker);
+        };
+      })(marker, content, infowindow));
 
-            bounds.extend(marker.position);
-          }
+    }) //waypoints each
 
-          var flightPath = new google.maps.Polyline({
-            path: flight_path_coords,
-            geodesic: true,
-            strokeColor: '#FF0000',
-            strokeOpacity: 1.0,
-            strokeWeight: 1
-          });
+    var flightPath = new google.maps.Polyline({
+      path: flight_path_coords,
+      geodesic: true,
+      strokeColor: '#000',
+      strokeOpacity: 1.0,
+      strokeWeight: 1
+    });
 
-          flightPath.setMap(map);
-        }
-        map.fitBounds(bounds);
-      }
-  });
+    flightPath.setMap(map);
+  }); //pilots each
+
+  map.fitBounds(bounds);
+  removeLoading();
 }
 
 function removeLoading(){

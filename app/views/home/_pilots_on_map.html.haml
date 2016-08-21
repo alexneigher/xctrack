@@ -1,0 +1,13 @@
+-@users.each do |user|
+  %li.list-group-item
+    .row
+      .col-xs-4.col-sm-5
+        -if @rendered_user_ids.include?(user.id)
+          = link_to root_path(pilots: remove_user_from_map(@rendered_user_ids, user)), class: ' btn btn-success btn-block' do
+            %i.fa.fa-check
+        -else
+          = link_to root_path(pilots: add_user_to_map(@rendered_user_ids, user)), class: ' btn btn-default btn-block' do
+            +
+      .col-xs-8.col-sm-7
+        .text-center.btn
+          = link_to user.name, user_path(user)

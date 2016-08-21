@@ -2,31 +2,23 @@ class HomeController < ApplicationController
   before_action :fetch_users
 
   def index
-    #scope this by group later
-    @users = User.all
-    if params[:pilots]
-      @rendered_user_ids = params[:pilots].split(',').map(&:to_i)
-    else
-      @rendered_user_ids = @users.map(&:id)
-    end
+    @coordinates = @users_on_map.map(&:fetch_coordinates)
   end
 
-  def fetch_coordinates
-    @coordinates = @users.map(&:fetch_coordinates)
-    render :json => @coordinates
-  end
 
   private
-
     def fetch_users
-      user_ids = params[:pilots]
-      if user_ids.present?
-        ids = user_ids.split(',')
-        @users = User.where(id: ids)
+      @users = User.all #scope by current group eventually
+
+      if params[:pilots]
+        ids = params[:pilots].split(',')
+        @users_on_map = @users.where(id: ids)
       else
-        @users = User.all
+        @users_on_map = @users
       end
 
+      @rendered_user_ids = @users_on_map.map(&:id)
     end
 
 end
+
