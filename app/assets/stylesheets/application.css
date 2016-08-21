@@ -10,6 +10,31 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
+
+
+a:visited.btn-success, a:visited.btn-primary{
+  color: #fff;
+}
+
+.map-container{
+  position: relative;
+}
+.map-container #loading{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d9d9d9;
+  opacity: 0.8;
+  color: #fff;
+  padding-top:250px;
+  text-align: center;
+  font-size: 40px;
+}

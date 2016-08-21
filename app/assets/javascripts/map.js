@@ -8,9 +8,9 @@ $(function(){
 
 function initialize() {
   var mapProp = {
-    center: new google.maps.LatLng(0,0),
+    center: new google.maps.LatLng(37,-122),
     zoom:4,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
+    mapTypeId:google.maps.MapTypeId.TERRAIN
   };
   var bounds = new google.maps.LatLngBounds();
 
@@ -19,18 +19,18 @@ function initialize() {
   var query_string = {};
   var query = window.location.search.substring(1);
   var vars = query.split("&");
-  var ids;
+
+  var ids = '';
   if (vars[0].length > 0){
     ids = vars[0].split("=")[1];
-  }else{
-    ids = ''
   }
   $.ajax({
       type: "GET",
       url: "/fetch_coordinates?pilot_ids="+ids,
       success: function(data) {
+        removeLoading();
         //each user
-        for(var i = 0; i<data.length;i++){
+        for(var i = 0; i < data.length; i++){
           //each hash of lat/lon per point for that user (one flight)
           flight_path_coords = []
 
@@ -40,7 +40,7 @@ function initialize() {
             var marker = new google.maps.Marker({
               position: new google.maps.LatLng(parseFloat(data[i][j]['latitude']), parseFloat(data[i][j]['longitude'])),
               map: map,
-              title: 'test'
+              label: data[i][j]['name'][0],
             });
 
             var content = '<div id="content">'+
@@ -78,7 +78,8 @@ function initialize() {
   });
 }
 
-
-function resetbounds(map){
-
+function removeLoading(){
+  $('#loading').fadeOut(500, function(){
+    $(this).remove();
+  });
 }
