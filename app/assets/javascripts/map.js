@@ -19,7 +19,7 @@ function initialize() {
 
   $('.pilot').each(function(){
     var flight_path_coords = []
-    $(this).find('.waypoint').each(function(){
+    $(this).find('.waypoint').each(function(i){
       var $waypoint = $(this);
 
       var latitude = $waypoint.data('latitude');
@@ -28,17 +28,34 @@ function initialize() {
       var velocity = $waypoint.data('velocity');
       var name = $waypoint.data('name');
       var timestamp = $waypoint.data('timestamp');
+      var text = $waypoint.data('text');
+
+      var zIndex = 0
+      var icon = 'http://maps.google.com/mapfiles/ms/icons/red.png';
+
+      if (text){
+        icon = 'http://maps.google.com/mapfiles/ms/icons/green.png'
+        zIndex = 1
+      }
 
       flight_path_coords.push({lat: parseFloat(latitude), lng: parseFloat(longitude)})
 
       var marker = new google.maps.Marker({
+        // Supply the map and position parameters as usual.
         position: new google.maps.LatLng(latitude, longitude),
         map: map,
         label: name,
+        icon: {
+          url: icon,
+          origin: new google.maps.Point(0, -6),
+        },
+        zIndex: zIndex
       });
 
       bounds.extend(marker.position);
+
       var infowindow = new google.maps.InfoWindow()
+
       var content = '<div id="content">'+
         '<strong>Name:</strong> '+ name +'<br>'+
         '<strong>Latitude:</strong> '+ latitude +'<br>'+
@@ -46,6 +63,7 @@ function initialize() {
         '<strong>Velocity:</strong> '+ velocity +'<br>'+
         '<strong>Elevation:</strong> '+ elevation +'<br>'+
         '<strong>Time (Local):</strong> '+ timestamp +'<br>'+
+        '<strong>Text:</strong> '+ text +'<br>'+
         '</div>';
 
       google.maps.event.addListener(marker,'click', (function(marker, content, infowindow){

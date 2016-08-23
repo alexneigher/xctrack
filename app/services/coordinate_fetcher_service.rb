@@ -28,6 +28,7 @@ class CoordinateFetcherService
         elevation: elevation(point_data),
         velocity: point_data.at('[@name="Velocity"]').try(:text).try(:strip),
         timestamp: point_data.at('[@name="Time"]').try(:text).try(:strip),
+        text: point_data.at('[@name="Text"]').try(:text).try(:strip)
       }
     end
 
