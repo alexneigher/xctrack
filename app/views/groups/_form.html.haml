@@ -15,18 +15,19 @@
       = f.text_field :name, class: 'form-control'
     .form-group
       = f.submit nil, :class => 'btn btn-primary'
-  .col-md-6
-    %h1
-    .well
-      %ul.list-group
-        %li.list-group-item
-          = text_field_tag '[user_name]', nil, placeholder: "Search", class: 'form-control user-search', autocomplete: "off"
-          #search-results.hidden
-            .well.well-sm.well-default
-          = f.collection_check_boxes :user_grouping_ids, @group.user_groupings.all, :id, :group_id do |b|
-            %li.list-group-item
-              = b.check_box(checked: "checked")
-              = b.object.user.name
+  - if @edit
+    .col-md-6
+      %h1
+      .well
+        %ul.list-group
+          %li.list-group-item
+            = text_field_tag '[user_name]', nil, placeholder: "Add pilots to group", class: 'form-control user-search', autocomplete: "off"
+            #search-results.hidden
+              .well.well-sm.well-default
+            = f.collection_check_boxes :user_grouping_ids, @group.user_groupings.all, :id, :group_id do |b|
+              %li.list-group-item
+                = b.check_box(checked: "checked")
+                = b.object.user.name
 
 
 

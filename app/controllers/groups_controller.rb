@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
 
     if @group.save
       flash[:success] = 'Group was successfully created.'
-      redirect_to groups_path
+      redirect_to edit_group_path(@group)
     else
       render :new
     end
@@ -26,6 +26,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    @edit = true
     @group = Group.find(params[:id])
   end
 
