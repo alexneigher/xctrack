@@ -14,7 +14,7 @@
     - @user_groups.each do |group|
       %tr
         %td= link_to group.id, group_path(group)
-        %td= group.name
+        %td= link_to group.name, group_path(group)
         %td= group.users.count
         %td= l group.created_at
         %td
