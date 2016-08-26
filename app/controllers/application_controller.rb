@@ -5,15 +5,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-    #make sure only admin users have access to certain pages
-    def authenticate_admin_access
-      unless current_user.admin? || @user == current_user
-        flash[:error] = 'Bad Robot'
-        redirect_to root_path
-      end
-    end
-
     def fetch_users(group = nil)
+
       if group
         @users = group.users
       else
@@ -26,6 +19,7 @@ class ApplicationController < ActionController::Base
       else
         @users_on_map = []
       end
+
       @rendered_user_ids = @users_on_map.map(&:id)
     end
 end
