@@ -5,7 +5,6 @@ class CoordinateFetcherService
   end
 
 
-
   def extract_coordinates
     points = []
     @xml_data.css('Placemark').each do |point|

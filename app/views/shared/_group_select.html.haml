@@ -1,0 +1,18 @@
+.list-group-item
+  %select.form-control{onchange: "pickGroup($(this));"}
+    %option{selected: 'selected', data: {url: root_path } }
+      = "All Groups"
+
+    - Group.joins(:users).each do |group|
+      %option{selected: ('selected' if group.id == params[:id].to_i ), data: {url:group_path(group)} }
+        = "#{group.name} (#{group.users.count} pilots)"
+
+    %option{data: {url: new_group_path}}
+      = "New Group"
+
+:javascript
+  function pickGroup(el){
+    var $this = el
+    var data = $this.find(':selected').data('url');
+    location.assign(data)
+  }

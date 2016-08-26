@@ -1,0 +1,4 @@
+.page-header
+  %h1 New Group
+  = form_for @group, url: groups_path, method: :post do |f|
+    = render :partial => 'form',locals: {f: f}

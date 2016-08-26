@@ -5,7 +5,6 @@ $(function(){
   }
 });
 
-
 function initialize() {
   var mapProp = {
     center: new google.maps.LatLng(37,-122),

@@ -21,10 +21,11 @@
           %label http://share.delorme.com/
           = f.text_field :share_url, class: 'form-control'
   .form-group
-    .col-lg-offset-2.col-lg-10
-      = f.submit nil, :class => 'btn btn-primary'
-      = link_to t('.cancel', :default => t("helpers.links.cancel")),
-        users_path, :class => 'btn btn-default'
+    .row
+      .col-lg-10
+        = f.submit nil, :class => 'btn btn-primary'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")),
+          users_path, :class => 'btn btn-default'
 
 
 

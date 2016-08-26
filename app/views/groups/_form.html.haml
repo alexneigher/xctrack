@@ -1,0 +1,22 @@
+- if @group.errors.any?
+  #error_expl.panel.panel-danger
+    .panel-heading
+      %h3.panel-title
+        = pluralize(@group.errors.count, "error")
+        prohibited this group from being saved:
+    .panel-body
+      %ul
+        - @group.errors.full_messages.each do |msg|
+          %li= msg
+.form-group
+  .row
+    .col-md-6
+      %label Name
+      = f.text_field :name, class: 'form-control'
+.form-group
+  .row
+    .col-lg-10
+      = f.submit nil, :class => 'btn btn-primary'
+
+
+

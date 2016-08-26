@@ -11,18 +11,16 @@
     .well
 
       %ul.list-group
-        =render partial: 'pilots_on_map'
-        =render partial: 'group_select'
-
-        =render partial: 'time_select'
+        =render partial: 'shared/group_select'
+        =render partial: 'shared/time_select'
+        =render partial: 'shared/pilots_on_map'
       .form-group
         = link_to root_path(pilots: @users.map(&:id).join(',')), class: 'btn btn-sm btn-primary' do
           Show All
 
 #coordinates
-  - @coordinates.each do |flight|
+  - @coordinates.each do |pilots|
     .pilot
-      - flight.each do |waypoint|
+      - pilots.each do |waypoint|
         .waypoint{data:{latitude: waypoint[:latitude], longitude: waypoint[:longitude], name:  waypoint[:name], velocity:  waypoint[:velocity], timestamp: waypoint[:timestamp], elevation:  waypoint[:elevation], text: waypoint[:text] || 'N/A'}}
-
 
