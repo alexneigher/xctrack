@@ -3,7 +3,7 @@
     %option{selected: 'selected', data: {url: root_path } }
       = "All Groups"
 
-    - Group.joins(:users).each do |group|
+    - Group.joins(:users).distinct.each do |group|
       %option{selected: ('selected' if group.id == params[:id].to_i ), data: {url:group_path(group)} }
         = "#{group.name} (#{group.users.count} pilots)"
 

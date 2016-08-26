@@ -1,4 +1,4 @@
 .page-header
   %h1 Edit Group
   = form_for @group, url: group_path(@group), method: :put do |f|
-    = render :partial => 'form',locals: {f: f}
+    = render :partial => 'form', locals: {f: f}

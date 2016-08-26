@@ -8,15 +8,27 @@
       %ul
         - @group.errors.full_messages.each do |msg|
           %li= msg
-.form-group
-  .row
-    .col-md-6
+.row
+  .col-md-6
+    .form-group
       %label Name
       = f.text_field :name, class: 'form-control'
-.form-group
-  .row
-    .col-lg-10
+    .form-group
       = f.submit nil, :class => 'btn btn-primary'
+  .col-md-6
+    %h1
+    .well
+      %ul.list-group
+        %li.list-group-item
+          = text_field_tag '[user_name]', nil, placeholder: "Search", class: 'form-control'
+          .well.results.hidden
+            results
+          = f.collection_check_boxes :user_grouping_ids, @group.user_groupings.all, :id, :group_id do |b|
+            %li.list-group-item
+              = b.check_box(checked: "checked")
+              = b.object.user.name
+
+
 
 
 
