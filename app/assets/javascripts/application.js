@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+
+
+$(function(){
+  $('.btn-loading').click(function(){
+    $(this).html('<i class="fa fa-refresh fa-spin">')
+  })
+})

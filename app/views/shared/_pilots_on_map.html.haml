@@ -3,11 +3,16 @@
     .row
       .col-xs-4.col-sm-5
         -if @rendered_user_ids.include?(user.id)
-          = remove_user_from_map_link @rendered_user_ids, user, @current_group_id, class: ' btn btn-success btn-block' do
+          = remove_user_from_map_link @rendered_user_ids, user, @current_group_id, class: ' btn btn-success btn-block btn-loading' do
             %i.fa.fa-check
         -else
-          = add_user_to_map @rendered_user_ids, user, @current_group_id, class: ' btn btn-default btn-block' do
+          = add_user_to_map @rendered_user_ids, user, @current_group_id, class: ' btn btn-default btn-block btn-loading' do
             +
-      .col-xs-8.col-sm-7
-        .text-center.btn
-          = link_to user.name, user_path(user)
+      .hidden-xs
+        .col-xs-8.col-sm-7
+          .text-center
+            = link_to user.name, user_path(user)
+      .visible-xs
+        .col-xs-8.col-sm-7
+          .text-center.btn
+            = link_to user.name, user_path(user)
