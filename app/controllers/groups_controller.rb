@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
 
+  before_action :authenticate_admin_access, only: [:new, :create, :edit, :update, :destroy, :index]
+
   def index
     @groups = Group.all
   end
