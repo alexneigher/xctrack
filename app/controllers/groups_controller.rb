@@ -58,6 +58,12 @@ class GroupsController < ApplicationController
     render 'home/index'
   end
 
+  def add_user
+    @group = Group.find(params[:group_id])
+    @group.user_groupings.create(user_id: params[:user_id])
+    redirect_to edit_group_path(@group)
+  end
+
   private
     def group_params
       params.require(:group).permit(:name, user_grouping_ids: [])

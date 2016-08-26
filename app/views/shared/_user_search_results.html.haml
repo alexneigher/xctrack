@@ -1,0 +1,7 @@
+.list-group
+  - users.each do |user|
+    =link_to group_add_user_path(@group, user.id), method: :post, class: 'list-group-item' do
+      = user.name
+  -if users.empty?
+    No results :(
+

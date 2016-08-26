@@ -20,9 +20,9 @@
     .well
       %ul.list-group
         %li.list-group-item
-          = text_field_tag '[user_name]', nil, placeholder: "Search", class: 'form-control'
-          .well.results.hidden
-            results
+          = text_field_tag '[user_name]', nil, placeholder: "Search", class: 'form-control user-search'
+          #search-results.hidden
+            .well.well-sm.well-default
           = f.collection_check_boxes :user_grouping_ids, @group.user_groupings.all, :id, :group_id do |b|
             %li.list-group-item
               = b.check_box(checked: "checked")
@@ -31,4 +31,18 @@
 
 
 
+
+:javascript
+  $(function(){
+    $('.user-search').keyup(function(){
+      value = $(this).val();
+      if (value.length > 3){
+        $.ajax({
+          method: 'PUT',
+          url: '/user_search',
+          data: {name: value, group_id: #{@group.id}},
+        })
+      }
+    });
+  })
 
