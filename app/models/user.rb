@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups, join_table:'user_groupings'
 
   def full_api_url
-    d1 = formatted_datetime(1.day.ago)
+    d1 = formatted_datetime(12.hours.ago)
     d2 = formatted_datetime(DateTime.current)
 
     "https://share.delorme.com/feed/Share/#{share_url}?d1=#{d1}&d2=#{d2}"

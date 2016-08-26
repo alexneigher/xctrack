@@ -1,7 +1,12 @@
 .list-group
   - users.each do |user|
-    =link_to group_add_user_path(@group, user.id), method: :post, class: 'list-group-item' do
-      = user.name
+    - if user.groups.include?(@group)
+      .list-group-item.disabled
+        = user.name
+        (already in group)
+    - else
+      = link_to group_add_user_path(@group, user.id), method: :post, class: 'list-group-item' do
+        = user.name
   -if users.empty?
     No results :(
 

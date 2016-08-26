@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
   def user_search
     @group = Group.find(params[:group_id])
-    @users = User.where('name ILIKE ?', "%#{params[:name]}%")
+    @users = User.includes(:groups).where('name ILIKE ?', "%#{params[:name]}%")
   end
 
   private

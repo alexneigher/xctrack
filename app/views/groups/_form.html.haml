@@ -20,7 +20,7 @@
     .well
       %ul.list-group
         %li.list-group-item
-          = text_field_tag '[user_name]', nil, placeholder: "Search", class: 'form-control user-search'
+          = text_field_tag '[user_name]', nil, placeholder: "Search", class: 'form-control user-search', autocomplete: "off"
           #search-results.hidden
             .well.well-sm.well-default
           = f.collection_check_boxes :user_grouping_ids, @group.user_groupings.all, :id, :group_id do |b|
@@ -36,12 +36,15 @@
   $(function(){
     $('.user-search').keyup(function(){
       value = $(this).val();
-      if (value.length > 3){
+      if (value.length >= 3){
         $.ajax({
           method: 'PUT',
           url: '/user_search',
           data: {name: value, group_id: #{@group.id}},
         })
+      }
+      else{
+        $('#search-results').addClass('hidden').find('.well').html();
       }
     });
   })

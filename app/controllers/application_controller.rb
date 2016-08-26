@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
     def fetch_users(group = nil)
 
       if group
-        @users = group.users
+        @users = group.users.order(:name)
       else
-        @users = User.all
+        @users = User.all.order(:name)
       end
 
       if params[:pilots]
