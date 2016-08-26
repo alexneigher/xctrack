@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     def authenticate_admin_access
       unless current_user.admin? || @user == current_user
         flash[:error] = 'Bad Robot'
-        redirect_to users_path
+        redirect_to root_path
       end
     end
 
