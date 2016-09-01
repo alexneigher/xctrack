@@ -7,18 +7,20 @@ $(function(){
 
 function initialize() {
   var mapProp = {
-    center: new google.maps.LatLng(37,-122),
-    zoom:4,
+    center: new google.maps.LatLng(37,-100),
+    zoom: 4,
     mapTypeId:google.maps.MapTypeId.TERRAIN
   };
 
   var bounds = new google.maps.LatLngBounds();
-
+  var waypoints = 0;
   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
   $('.pilot').each(function(){
+    waypoints = 0
     var flight_path_coords = []
     $(this).find('.waypoint').each(function(i){
+      waypoints++
       var $waypoint = $(this);
 
       var latitude = $waypoint.data('latitude');
@@ -85,7 +87,10 @@ function initialize() {
     flightPath.setMap(map);
   }); //pilots each
 
-  map.fitBounds(bounds);
+  if (waypoints > 0){
+    map.fitBounds(bounds);
+  }
+
   removeLoading();
 }
 

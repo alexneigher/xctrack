@@ -10,13 +10,18 @@ describe CoordinateFetcherService do
 
     it 'returns a formatted hash' do
       expect(fetcher.extract_coordinates.first).to eq(
-        {:latitude=>"51.275693", :longitude=>"-116.885690", :timestamp=>"7/23/2016 4:33:15 PM"}
+        {:elevation => "1945m/ 6381ft",
+         :latitude=>"51.275693",
+         :longitude=>"-116.885690",
+         :name => "Alex Neigher",
+         :text => "",
+         :timestamp=>"7/23/2016 4:33:15 PM",
+         :velocity => "0.0 km/h"
+        }
       )
     end
-  end
 
-  context 'given no data' do
-    xit 'returns a usable hash' do
+    it 'stores a flight on the user' do
     end
   end
 end

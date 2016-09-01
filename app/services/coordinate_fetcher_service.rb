@@ -1,23 +1,22 @@
 class CoordinateFetcherService
 
-  def initialize(xml)
+  def initialize(xml, user)
     @xml_data = xml
+    @most_recent_flight = user.init_most_recent_flight
   end
 
 
   def extract_coordinates
-    points = []
-    @xml_data.css('Placemark').each do |point|
-      points << format_hash_element(point)
-    end
-    points.pop
 
-    points #data comes back with empty hash at the end :()
+    @xml_data.css('Placemark').each do |point|
+      @most_recent_flight.waypoints.create( format_hash_element(point) )
+    end
+
+    @most_recent_flight
   end
 
   private
 
-  #Name
     def format_hash_element(point)
       point_data = point.css('ExtendedData').children
       {

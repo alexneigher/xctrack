@@ -8,7 +8,7 @@
   .col-md-6
     .well
       %strong
-        Last known position: #{@user.fetch_coordinates.last}
+        Most Recent Flight Created At: #{@user.most_recent_flight.created_at.strftime('%b %e, %Y %H:%M:%S %z')}
 
 %dl.dl-horizontal
 

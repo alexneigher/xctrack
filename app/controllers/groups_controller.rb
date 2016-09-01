@@ -55,7 +55,6 @@ class GroupsController < ApplicationController
     fetch_users(@group)
 
     @coordinates = @users_on_map.map(&:fetch_coordinates)
-
     render 'home/index'
   end
 

@@ -11,7 +11,12 @@
       .hidden-xs
         .col-xs-8.col-sm-7
           .text-center
-            = link_to user.name, user_path(user)
+            = link_to user_path(user) do
+              = user.name
+              %br
+              %small
+                = user.most_recent_flight.created_at.strftime('%Y-%m-%d %H:%mZ')
+
       .visible-xs
         .col-xs-8.col-sm-7
           .text-center.btn
