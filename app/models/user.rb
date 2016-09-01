@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
 
   def fetch_coordinates
-    if most_recent_flight.present? && (most_recent_flight.created_at > 1.minute.ago)
+    if most_recent_flight.present? && (most_recent_flight.created_at > 10.minute.ago)
       # dont get new data
       # just render most recent flight
 
