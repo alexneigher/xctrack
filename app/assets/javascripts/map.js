@@ -9,7 +9,8 @@ function initialize() {
   var mapProp = {
     center: new google.maps.LatLng(37,-100),
     zoom: 4,
-    mapTypeId:google.maps.MapTypeId.TERRAIN
+    mapTypeId:google.maps.MapTypeId.TERRAIN,
+    disableDefaultUI: true
   };
 
   var bounds = new google.maps.LatLngBounds();

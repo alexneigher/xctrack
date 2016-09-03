@@ -38,3 +38,19 @@ a:visited.btn-success, a:visited.btn-primary{
   text-align: center;
   font-size: 40px;
 }
+
+.map-container .scroll-block{
+  position: absolute;
+  width: 12%;
+  bottom: 0px;
+  height: 100%;
+  z-index:999;
+}
+
+.map-container .scroll-block.left{
+  left: 0;
+}
+
+.map-container .scroll-block.right{
+  right:0;
+}
