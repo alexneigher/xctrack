@@ -5,7 +5,6 @@ module ApplicationHelper
       link_to group_path(current_group, pilots: (rendered_user_ids + [user.id]).join(',')), *args, &block
     else
       link_to root_path(pilots: (rendered_user_ids + [user.id]).join(',')), *args, &block
-
     end
 
   end

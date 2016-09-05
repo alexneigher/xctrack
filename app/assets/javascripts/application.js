@@ -18,9 +18,11 @@
 
 
 $(function(){
-  $('.btn-loading').click(function(e){
-    e.preventDefault();
-    $(this).html('<i class="fa fa-refresh fa-spin" />')
-    location.assign($(this).attr('href'));
+  $('.btn-loading').click(function(){
+    event.preventDefault();
+    event.stopPropagation();
+    alert('default prevent')
+    //$(this).html('<i class="fa fa-refresh fa-spin" />')
+    //location.assign($(this).attr('href'));
   })
 })
