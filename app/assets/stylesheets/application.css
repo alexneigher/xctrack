@@ -15,6 +15,9 @@
  *= require_self
  */
 
+html, body{
+  text-rendering: optimizeLegibility;
+}
 
 a:visited.btn-success, a:visited.btn-primary{
   color: #fff;

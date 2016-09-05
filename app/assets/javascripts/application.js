@@ -19,6 +19,6 @@
 
 $(function(){
   $('.btn-loading').click(function(){
-    $(this).html('<i class="fa fa-refresh fa-spin">')
+    $(this).html('<i class="fa fa-refresh fa-spin" />')
   })
 })
