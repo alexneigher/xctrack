@@ -23,6 +23,6 @@ $(function(){
     event.stopPropagation();
 
     $(this).html('<i class="fa fa-refresh fa-spin" />')
-    //location.assign($(this).attr('href'));
+    location.assign($(this).attr('href'));
   })
 })
