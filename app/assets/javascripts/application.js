@@ -18,7 +18,7 @@
 
 
 $(function(){
-  $('.btn-loading').click(function(){
+  $('.btn-loading').on('click tap', function(){
     event.preventDefault();
     event.stopPropagation();
 
