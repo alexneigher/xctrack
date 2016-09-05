@@ -16,10 +16,18 @@
         = f.text_field :name, class: 'form-control'
       .col-md-6
         %label
-          Share URL
+          Delorme Share URL
         .form-inline
           %label http://share.delorme.com/
           = f.text_field :share_url, class: 'form-control'
+  .form-group
+    .row
+      .col-md-6
+        .row
+          .col-md-6
+            %label Password
+            = f.password_field :password, class: 'form-control'
+
   .form-group
     .row
       .col-lg-10
