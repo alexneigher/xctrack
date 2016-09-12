@@ -60,6 +60,12 @@ a:visited.btn-success, a:visited.btn-primary{
 
 }
 
+@media (min-width: 720px){
+  .map-container .scroll-block{
+    display: none;
+  }
+}
+
 .map-container .scroll-block.left{
   left: 0;
 }
