@@ -6,22 +6,34 @@ describe CoordinateFetcherService do
 
     let(:file){ File.read( Rails.root.join('spec', 'data', 'file.xml')) }
     let(:file_data){ Nokogiri::XML(file) }
-    let(:fetcher){ CoordinateFetcherService.new(file_data) }
+    let(:user) { create(:user) }
+    let(:fetcher){ CoordinateFetcherService }
 
-    it 'returns a formatted hash' do
-      expect(fetcher.extract_coordinates.first).to eq(
-        {:elevation => "1945m/ 6381ft",
-         :latitude=>"51.275693",
-         :longitude=>"-116.885690",
-         :name => "Alex Neigher",
-         :text => "",
-         :timestamp=>"7/23/2016 4:33:15 PM",
-         :velocity => "0.0 km/h"
-        }
-      )
+    describe 'initialize' do
+      it 'instantiates a new most recent flight' do
+        fetcher.new(file_data, user)
+        expect(user.most_recent_flight).to be_present
+      end
     end
 
-    it 'stores a flight on the user' do
+    describe 'extract coordinates' do
+      before do
+        fetcher.new(file_data, user).extract_coordinates
+      end
+      it 'stores the waypoints on the users most recent flight' do
+        expect(user.most_recent_flight.waypoints.count).to eq 140
+        expect(user.most_recent_flight)
+      end
+
+      it 'formats the waypoints properly' do
+        first_waypoint = user.most_recent_flight.waypoints.first
+
+        expect(first_waypoint.elevation).to eq "136m/ 446ft"
+        expect(first_waypoint.latitude).to eq "37.505671"
+        expect(first_waypoint.longitude).to eq "-121.904233"
+        expect(first_waypoint.name).to eq "Alex Neigher"
+        expect(first_waypoint.text).to eq "#08 Alex Neigher +18185167749 Landed OK."
+      end
     end
   end
 end

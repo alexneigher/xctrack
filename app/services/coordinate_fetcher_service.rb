@@ -7,7 +7,6 @@ class CoordinateFetcherService
 
 
   def extract_coordinates
-
     @xml_data.css('Placemark').each do |point|
       @most_recent_flight.waypoints.create( format_hash_element(point) )
     end

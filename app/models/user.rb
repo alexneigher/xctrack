@@ -43,7 +43,6 @@ class User < ActiveRecord::Base
 
   private
 
-
     def formatted_datetime(datetime)
       datetime.strftime('%Y-%m-%dT%H:%mZ')
     end
