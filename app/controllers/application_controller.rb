@@ -13,9 +13,16 @@ class ApplicationController < ActionController::Base
         @users = User.with_waypoints.order(:name)
       end
 
+      #for a specific subset of pilots (specified by params)
       if params[:pilots]
         ids = params[:pilots].split(',')
         @users_on_map = @users.where(id: ids)
+
+      #if no params, but in groups show page
+      elsif group
+        @users_on_map = @users
+
+      #don't show anybody
       else
         @users_on_map = []
       end

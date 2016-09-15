@@ -22,7 +22,6 @@ describe CoordinateFetcherService do
       end
       it 'stores the waypoints on the users most recent flight' do
         expect(user.most_recent_flight.waypoints.count).to eq 140
-        expect(user.most_recent_flight)
       end
 
       it 'formats the waypoints properly' do

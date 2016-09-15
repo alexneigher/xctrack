@@ -23,6 +23,14 @@ a:visited.btn-success, a:visited.btn-primary{
   color: #fff;
 }
 
+a.map-link{
+  color: blue;
+}
+
+a.map-link:hover{
+  background-color: white;
+}
+
 .map-container{
   position: relative;
 }

@@ -14,6 +14,7 @@ function initialize() {
   };
 
   var bounds = new google.maps.LatLngBounds();
+  console.log(bounds);
   var waypoints = 0;
   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
@@ -47,6 +48,7 @@ function initialize() {
         position: new google.maps.LatLng(latitude, longitude),
         map: map,
         label: name,
+        //opacity: 0, this will come from equation like ( 100 - (16.6 * n) ) / 100
         icon: {
           url: icon,
           origin: new google.maps.Point(0, -6),
@@ -65,10 +67,10 @@ function initialize() {
         '<strong>Velocity:</strong> '+ velocity +'<br>'+
         '<strong>Elevation:</strong> '+ elevation +'<br>'+
         '<strong>Time (Local):</strong> '+ timestamp +'<br>'+
-        '<strong>Text:</strong> '+ text +'<br>'+
+        '<strong>Text:</strong> <a class="map-link" href="https://maps.google.com/?daddr='+ latitude +','+ longitude +' " target="_blank">'+ text +'</a> <br>'+
         '</div>';
 
-      google.maps.event.addListener(marker,'click', (function(marker, content, infowindow){
+      google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){
         return function() {
           infowindow.setContent(content);
           infowindow.open(map, marker);

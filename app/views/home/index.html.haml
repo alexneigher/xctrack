@@ -16,7 +16,7 @@
         =render partial: 'shared/time_select'
         =render partial: 'shared/pilots_on_map'
       .form-group
-        = link_to root_path(pilots: @users.map(&:id).join(',')), class: 'btn btn-sm btn-primary' do
+        = show_all_path @users.map(&:id).join(','), @group, class: 'btn btn-sm btn-primary' do
           Show All
         - if @group.present?
           = link_to 'edit group', edit_group_path(@group), class: 'pull-right'
@@ -25,5 +25,5 @@
   - @coordinates.each do |pilots|
     .pilot
       - pilots.each do |waypoint|
-        .waypoint{data:{latitude: waypoint.latitude, longitude: waypoint.longitude, name:  waypoint.name, velocity:  waypoint.velocity, timestamp: waypoint.timestamp, elevation:  waypoint.elevation, text: waypoint.text || 'N/A'}}
+        .waypoint{data:{latitude: waypoint.latitude, longitude: waypoint.longitude, name:  waypoint.name, velocity:  waypoint.velocity, timestamp: waypoint.timestamp, elevation:  waypoint.elevation, text: waypoint.text}}
 
