@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta property="og:title" content="<%= title_helper %>" />
-    <title><%= content_for?(:title) ? yield(:title) : "Xctrack" %></title>
+    <title><%= title_helper %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -37,7 +37,6 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "My Profile", user_path(current_user) %></li>
                   <li><%= link_to "My Groups", groups_path %></li>
-                  <li><a href="#">Something else here</a></li>
                   <li role="separator" class="divider"></li>
                   <li><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
 
