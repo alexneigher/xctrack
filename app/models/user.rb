@@ -13,11 +13,19 @@ class User < ActiveRecord::Base
 
   scope :with_waypoints, lambda { joins(most_recent_flight: :waypoints).uniq }
 
+  enum tracker_type: [ :in_reach_user, :spot_user ]
+
   def full_api_url
     d1 = formatted_datetime(12.hours.ago)
     d2 = formatted_datetime(DateTime.current)
 
-    "https://share.delorme.com/feed/Share/#{share_url}?d1=#{d1}&d2=#{d2}"
+    if self.in_reach_user?
+      "https://share.delorme.com/feed/Share/#{share_url}?d1=#{d1}&d2=#{d2}"
+    else
+      "https://api.findmespot.com/spot-main-web/"\
+      "consumer/rest-api/2.0/public/feed/#{share_url}/"\
+      "message.xml?startDate=#{d1}&endDate=#{d2}"
+    end
   end
 
   def init_most_recent_flight
@@ -44,7 +52,11 @@ class User < ActiveRecord::Base
   private
 
     def formatted_datetime(datetime)
-      datetime.strftime('%Y-%m-%dT%H:%mZ')
+      if self.in_reach_user?
+        datetime.strftime('%Y-%m-%dT%H:%mZ')
+      else
+        datetime.strftime('%Y-%m-%dT%H:%m:%S-0000')
+      end
     end
 
 end

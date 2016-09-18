@@ -16,10 +16,19 @@
                 = f.email_field :email, placeholder: 'alex@flyfar.com', class: 'form-control'
           .form-group
             .row.well
-              %label Share URL
-              .form-inline
-                %label http://www.share.delorme.com/
-                = f.text_field :share_url, class: 'form-control'
+              %label
+                = f.radio_button :tracker_type, 'in_reach_user', checked: true
+                InReach Share URL
+                .form-inline
+                  http://www.share.delorme.com/
+                  = f.text_field :share_url, class: 'form-control radio-control'
+              %hr
+              %label
+                = f.radio_button :tracker_type, 'spot_user'
+                SPOT URL
+                .form-inline
+                  http://share.findmespot.com/shared/faces/viewspots.jsp?glId=
+                  = f.text_field :share_url, class: 'form-control radio-control'
           .form-group
             .row
               .col-md-6
@@ -34,3 +43,11 @@
               .col-md-6
                 = f.submit "Sign up", class: 'btn btn-success'
         = render "devise/shared/links"
+
+
+:javascript
+  $(function(){
+    $('input.radio-control').focus(function(){
+      $('.radio-control').not(this).val('')
+    })
+  })
