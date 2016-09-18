@@ -8,9 +8,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    resource.fetch_coordinates
+  end
 
   # GET /resource/edit
   # def edit
@@ -39,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :share_url, :tracker_type])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :in_reach_share_url, :spot_share_url, :tracker_type])
   end
 
   # def configure_account_update_params

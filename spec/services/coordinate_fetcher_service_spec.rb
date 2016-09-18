@@ -38,7 +38,7 @@ describe CoordinateFetcherService do
       end
 
       context 'when the user is a spot user' do
-        let(:user) { create(:user, tracker_type: 1) }
+        let(:user) { create(:user, tracker_type: 1, spot_share_url: '123456789') }
         let(:file){ File.read( Rails.root.join('spec', 'data', 'spot_data.xml')) }
 
         before do

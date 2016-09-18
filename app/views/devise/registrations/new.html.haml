@@ -21,14 +21,14 @@
                 InReach Share URL
                 .form-inline
                   http://www.share.delorme.com/
-                  = f.text_field :share_url, class: 'form-control radio-control'
+                  = f.text_field :in_reach_share_url, class: 'form-control radio-control'
               %hr
               %label
                 = f.radio_button :tracker_type, 'spot_user'
                 SPOT URL
                 .form-inline
                   http://share.findmespot.com/shared/faces/viewspots.jsp?glId=
-                  = f.text_field :share_url, class: 'form-control radio-control'
+                  = f.text_field :spot_share_url, class: 'form-control radio-control'
           .form-group
             .row
               .col-md-6

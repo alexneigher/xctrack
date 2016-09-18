@@ -5,7 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, presence: true, uniqueness: true
-  validates :name, :share_url, presence: true
+  validates :name, presence: true
+
+  validates :in_reach_share_url, presence: true, if: ->(user){user.in_reach_user?}
+  validates :spot_share_url, presence: true, if: ->(user){user.spot_user?}
 
   has_one :most_recent_flight
   has_many :waypoints, through: :most_recent_flight, dependent: :destroy
@@ -20,10 +23,10 @@ class User < ActiveRecord::Base
     d2 = formatted_datetime(DateTime.current)
 
     if self.in_reach_user?
-      "https://share.delorme.com/feed/Share/#{share_url}?d1=#{d1}&d2=#{d2}"
+      "https://share.delorme.com/feed/Share/#{in_reach_share_url}?d1=#{d1}&d2=#{d2}"
     else
       "https://api.findmespot.com/spot-main-web/"\
-      "consumer/rest-api/2.0/public/feed/#{share_url}/"\
+      "consumer/rest-api/2.0/public/feed/#{spot_share_url}/"\
       "message.xml?startDate=#{d1}&endDate=#{d2}"
     end
   end
