@@ -1,4 +1,4 @@
-= form_for @user, :html => { :class => "form-horizontal user" } do |f|
+= form_for @user, :html => { :class => "user" } do |f|
   - if @user.errors.any?
     #error_expl.panel.panel-danger
       .panel-heading
@@ -9,32 +9,36 @@
         %ul
           - @user.errors.full_messages.each do |msg|
             %li= msg
-  .form-group
-    .row
-      .col-md-6
+  .row
+    .col-md-6
+      .form-group
         %label Name
         = f.text_field :name, class: 'form-control'
-      .col-md-6
+      .form-group
+        %label Email
+        = f.text_field :email, class: 'form-control'
+    .col-md-6
+      .form-group.well
         %label
           = f.radio_button :tracker_type, 'in_reach_user', checked: true
           InReach Share URL
-          .form-inline
-            http://www.share.delorme.com/
+          .form-inline{style: 'margin-top:10px;'}
+            %span.hidden-xs
+              http://www.share.delorme.com/
+            %span.visible-xs{style: 'font-size: 10px;'}
+              http://www.share.delorme.com/
             = f.text_field :in_reach_share_url, class: 'form-control radio-control'
         %hr
         %label
           = f.radio_button :tracker_type, 'spot_user'
           SPOT URL
-          .form-inline
-            http://share.findmespot.com/shared/faces/viewspots.jsp?glId=
+          .form-inline{style: 'margin-top:10px;'}
+            %span.hidden-xs
+              http://share.findmespot.com/shared/faces/viewspots.jsp?glId=
+            %span.visible-xs{style: 'font-size: 10px;'}
+              share.findmespot.com/shared/faces/viewspots.jsp?glId=
+
             = f.text_field :spot_share_url, class: 'form-control radio-control'
-  .form-group
-    .row
-      .col-md-6
-        .row
-          .col-md-6
-            %label Password
-            = f.password_field :password, class: 'form-control'
 
   .form-group
     .row
