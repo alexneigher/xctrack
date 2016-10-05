@@ -19,7 +19,7 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-inverse" style="border-radius: 0;">
+    <nav class="navbar navbar-inverse <%= 'no-margin-vertical' if %w(home groups).include?(params[:controller]) %>" style="border-radius: 0;">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -42,12 +42,14 @@
                 <ul class="dropdown-menu">
                   <li><%= link_to "My Profile", user_path(current_user) %></li>
                   <li><%= link_to "My Groups", groups_path %></li>
+                  <li><a href="mailto:aneigher@gmail.com">Contact Me</a></li>
                   <li role="separator" class="divider"></li>
                   <li><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
 
                 </ul>
               </li>
             <% else %>
+              <li><a href="mailto:aneigher@gmail.com">Contact Me</a></li>
               <li><%= link_to('Sign Up', new_user_registration_path)  %></li>
               <li><%= link_to('Login', new_user_session_path)  %></li>
             <% end %>
@@ -64,10 +66,6 @@
           <%= yield %>
         </div>
       </div><!--/row-->
-      <footer>
-
-        <p>&copy; <a href="mailto:aneigher@gmail.com">Alex Neigher</a> <%= Date.current.strftime('%Y') %></p>
-      </footer>
     </div> <!-- /container -->
   </body>
 </html>
