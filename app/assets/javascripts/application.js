@@ -28,5 +28,8 @@ $(function(){
 
   $('.toggle-pilot-container').click(function(){
     $('#pilots-container').toggleClass('hidden');
+    if($(window).width() <= 500){
+      $('.navbar-collapse').collapse('hide');
+    }
   })
 })

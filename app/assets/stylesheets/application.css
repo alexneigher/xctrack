@@ -50,10 +50,6 @@ a.map-link:hover{
   font-size: 40px;
 }
 
-.close-btn{
-  position: absolute;
-  font-size:50px;
-}
 #pilots-container{
   position: absolute;
   left: 0;
