@@ -50,34 +50,16 @@ a.map-link:hover{
   font-size: 40px;
 }
 
-.map-container .scroll-block{
+
+#pilots-container{
   position: absolute;
-  width: 12%;
-  bottom: 0px;
-  height: 100%;
-  z-index:999;
-  opacity:0.2;
-  background:
-      repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 5px,
-      #465298 5px,
-      #465298 10px
-    )
-
-}
-
-@media (min-width: 720px){
-  .map-container .scroll-block{
-    display: none;
-  }
-}
-
-.map-container .scroll-block.left{
   left: 0;
-}
-
-.map-container .scroll-block.right{
   right:0;
+  top: 20px;
+  width:100%;
+}
+#pilots-container .pilot-container-block{
+  float: none;
+  margin: auto;
+  box-shadow: 0 0 9px;
 }

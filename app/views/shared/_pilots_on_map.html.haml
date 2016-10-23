@@ -26,3 +26,7 @@
               %br
               %small
                 = user.waypoints.last.timestamp
+
+- if @users.empty?
+  %li.list-group-item
+    Hmm, it must be unflyable today :(

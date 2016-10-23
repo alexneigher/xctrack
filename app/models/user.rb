@@ -57,9 +57,9 @@ class User < ActiveRecord::Base
 
     def formatted_datetime(datetime)
       if self.in_reach_user?
-        datetime.strftime('%Y-%m-%dT%H:%mZ')
+        datetime.strftime('%Y-%m-%dT%H:%MZ')
       else
-        datetime.strftime('%Y-%m-%dT%H:%m:%S-0000')
+        datetime.strftime('%Y-%m-%dT%H:%M:%S-0000')
       end
     end
 

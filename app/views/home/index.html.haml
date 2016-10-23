@@ -1,25 +1,13 @@
 %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyBDAmzYeQpRVm_0ajvbf5GVqgislxyTqKc"}
 
 .row
-  .col-md-9.no-padding
+  .col-md-12.no-padding
     .map-container
-      .scroll-block.left
-      .scroll-block.right
       #googleMap{style: 'width:100%;height:93vh;'}
       #loading
         Loading...
 
-  .col-md-3.no-padding
-    .well
-      %ul.list-group
-        =render partial: 'shared/group_select'
-        =render partial: 'shared/time_select'
-        =render partial: 'shared/pilots_on_map'
-      .form-group
-        = show_all_path @users.map(&:id).join(','), @group, class: 'btn btn-sm btn-primary' do
-          Show All
-        - if @group.present?
-          = link_to 'edit group', edit_group_path(@group), class: 'pull-right'
+= render partial: 'shared/pilot_container'
 
 #coordinates
   - @coordinates.each do |pilots|
