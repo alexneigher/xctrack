@@ -25,4 +25,8 @@ $(function(){
     $(this).html('<i class="fa fa-refresh fa-spin" />')
     location.assign($(this).attr('href'));
   })
+
+  $('.toggle-pilot-container').click(function(){
+    $('#pilots-container').toggleClass('hidden');
+  })
 })
