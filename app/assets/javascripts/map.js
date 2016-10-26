@@ -47,7 +47,7 @@ function initialize() {
         // Supply the map and position parameters as usual.
         position: new google.maps.LatLng(latitude, longitude),
         map: map,
-        label: name,
+        label: name[0],
         //opacity: 0, this will come from equation like ( 100 - (16.6 * n) ) / 100
         icon: {
           url: icon,
