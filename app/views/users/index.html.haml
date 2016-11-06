@@ -7,14 +7,16 @@
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:created_at)
+      %th Tracker Type
       - if current_user.admin?
         %th= t '.actions', :default => t("helpers.actions")
   %tbody
     - @users.each do |user|
       %tr
         %td= link_to user.id, user_path(user)
-        %td= user.name
+        %td= link_to user.name, user_path(user)
         %td= l user.created_at
+        %td= user.tracker_type.humanize.titleize.gsub('User', '')
         -if current_user.admin?
           %td
             = link_to t('.edit', :default => t("helpers.links.edit")),
