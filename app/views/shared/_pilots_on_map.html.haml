@@ -1,7 +1,7 @@
 -@users.each do |user|
   %li.list-group-item
     .row
-      .col-xs-4.col-sm-5
+      .col-xs-4.col-sm-4
         -if @rendered_user_ids.include?(user.id)
           = remove_user_from_map_link @rendered_user_ids, user, @current_group_id, class: 'btn btn-success btn-block btn-loading' do
             &#10003;
@@ -10,7 +10,7 @@
             &#43;
 
       .hidden-xs
-        .col-xs-8.col-sm-7
+        .col-xs-8.col-sm-8
           .text-center
             = link_to user_path(user) do
               = user.name
@@ -19,7 +19,7 @@
                 = user.waypoints.last.timestamp
 
       .visible-xs
-        .col-xs-8.col-sm-7
+        .col-xs-8.col-sm-8
           .text-center.btn
             = link_to user_path(user) do
               = user.name

@@ -21,3 +21,8 @@
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.collapsing {
+  -webkit-transition: none;
+  transition: none;
+}

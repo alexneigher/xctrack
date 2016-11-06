@@ -19,11 +19,7 @@
 
 $(function(){
   $('.btn-loading').on('click tap', function(){
-    event.preventDefault();
-    event.stopPropagation();
-
     $(this).html('<i class="fa fa-refresh fa-spin" />')
-    location.assign($(this).attr('href'));
   })
 
   $('.toggle-pilot-container').click(function(){
@@ -31,5 +27,5 @@ $(function(){
     if($(window).width() <= 500){
       $('.navbar-collapse').collapse('hide');
     }
-  })
+  });
 })
