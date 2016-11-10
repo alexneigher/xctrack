@@ -5,9 +5,11 @@
         =render partial: 'shared/group_select'
         =# render partial: 'shared/time_select'
         =render partial: 'shared/pilots_on_map'
-      .form-group
-        = show_all_path @users.map(&:id).join(','), @group, class: 'btn btn-sm btn-primary btn-block' do
-          Show All
+      .row
+        .col-md-6.form-group
+          = show_all_path @users.map(&:id).join(','), @group, class: 'btn btn-sm btn-primary btn-block' do
+            Show All
         - if @group.present?
-          = link_to 'edit group', edit_group_path(@group), class: 'pull-right'
+          .col-md-6.form-group
+            = link_to 'edit group', edit_group_path(@group), class: 'btn btn-sm btn-default btn-block'
 
