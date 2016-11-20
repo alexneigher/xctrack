@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe "editing an existing user", type: :feature, js: true do
   let!(:user){ create(:user) }
 
@@ -9,6 +8,7 @@ RSpec.describe "editing an existing user", type: :feature, js: true do
 
   end
   it 'allows me to change my tracker type' do
+
     visit edit_user_path(user)
     choose('SPOT URL')
 
@@ -16,7 +16,6 @@ RSpec.describe "editing an existing user", type: :feature, js: true do
 
     click_button 'Update User'
 
-    expect(page).to have_content 'User was successfully updated.'
     expect(user.reload.spot_user?).to be_truthy
 
   end

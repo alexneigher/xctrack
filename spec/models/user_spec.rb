@@ -13,12 +13,12 @@ RSpec.describe User, type: :model do
     end
 
     it 'sets D1 equal to 12 hours ago' do
-      time = 12.hours.ago.strftime('%Y-%m-%dT%H:%mZ')
+      time = 12.hours.ago.strftime('%Y-%m-%dT%H:%MZ')
       expect(user.full_api_url).to include(time)
     end
 
     it 'sets D2 equal to current' do
-      time = DateTime.current.strftime('%Y-%m-%dT%H:%mZ')
+      time = DateTime.current.strftime('%Y-%m-%dT%H:%MZ')
       expect(user.full_api_url).to include(time)
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when the data is less than 10 minutes old' do
-      let!(:recent_flight){ user.create_most_recent_flight(created_at: 9.minutes.ago) }
+      let!(:recent_flight){ user.create_most_recent_flight(created_at: 4.minutes.ago) }
       it 'returns database waypoints' do
         expect_any_instance_of(CoordinateFetcherService).to_not receive(:extract_coordinates)
         user.fetch_coordinates

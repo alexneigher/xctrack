@@ -12,8 +12,7 @@ RSpec.describe "signing up as a new user", type: :feature, js: true do
     fill_in 'user_password', with: '1234567890'
     fill_in 'user_password_confirmation', with: '1234567890'
     click_button 'Sign up'
-    expect(page).to have_content 'Welcome! You have signed up successfully.'
-    expect(User.count).to eq 1
 
+    expect(User.count).to eq 1
   end
 end

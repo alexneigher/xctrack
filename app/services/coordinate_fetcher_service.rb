@@ -28,7 +28,7 @@ class CoordinateFetcherService
 
     def format_spot_waypoint(point)
       {
-        name: point.css('messengerName').try(:text).try(:strip),
+        name: point.css('messengerName').try(:text).try(:strip).presence || 'Spot User',
         latitude: point.css('latitude').try(:text).try(:strip),
         longitude: point.css('longitude').try(:text).try(:strip),
         elevation: '',
@@ -41,7 +41,7 @@ class CoordinateFetcherService
     def format_in_reach_waypoint(point)
       point_data = point.css('ExtendedData').children
       {
-        name: point_data.at('[@name="Name"]').try(:text).try(:strip),
+        name: point_data.at('[@name="Name"]').try(:text).try(:strip).presence || 'User',
         latitude: point_data.at('[@name="Latitude"]').try(:text).try(:strip),
         longitude: point_data.at('[@name="Longitude"]').try(:text).try(:strip),
         elevation: elevation(point_data),

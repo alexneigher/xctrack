@@ -32,7 +32,6 @@ function initialize() {
       var name = $waypoint.data('name');
       var timestamp = $waypoint.data('timestamp');
       var text = $waypoint.data('text');
-
       var zIndex = 0
       var icon = 'http://maps.google.com/mapfiles/ms/icons/red.png';
 
