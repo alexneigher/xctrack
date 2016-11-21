@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160918045028) do
+ActiveRecord::Schema.define(version: 20161121012525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,11 +64,11 @@ ActiveRecord::Schema.define(version: 20160918045028) do
     t.string   "longitude"
     t.string   "name"
     t.string   "text"
-    t.string   "timestamp"
     t.string   "velocity"
     t.integer  "most_recent_flight_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.datetime "timestamp"
   end
 
   add_index "waypoints", ["most_recent_flight_id"], name: "index_waypoints_on_most_recent_flight_id", using: :btree

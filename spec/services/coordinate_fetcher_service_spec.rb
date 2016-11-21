@@ -27,13 +27,13 @@ describe CoordinateFetcherService do
         end
 
         it 'formats the waypoints properly' do
-          first_waypoint = user.most_recent_flight.waypoints.first
-
-          expect(first_waypoint.elevation).to eq "136m/ 446ft"
-          expect(first_waypoint.latitude).to eq "37.505671"
-          expect(first_waypoint.longitude).to eq "-121.904233"
+          first_waypoint = user.most_recent_flight.waypoints.order(:id).first
+          expect(first_waypoint.elevation).to eq "1945m/ 6381ft"
+          expect(first_waypoint.latitude).to eq "51.275693"
+          expect(first_waypoint.longitude).to eq "-116.885690"
           expect(first_waypoint.name).to eq "Alex Neigher"
-          expect(first_waypoint.text).to eq "#08 Alex Neigher +18185167749 Landed OK."
+          expect(first_waypoint.timestamp).to eq "Sat, 23 Jul 2016 23:33:15 UTC +00:00"
+          expect(first_waypoint.text).to eq ""
         end
       end
 
@@ -50,8 +50,7 @@ describe CoordinateFetcherService do
         end
 
         it 'formats the waypoints properly' do
-          first_waypoint = user.most_recent_flight.waypoints.last
-
+          first_waypoint = user.most_recent_flight.waypoints.order(:id).last
           expect(first_waypoint.latitude).to eq "37.62857"
           expect(first_waypoint.longitude).to eq "-118.37437"
           expect(first_waypoint.name).to eq "Jai Pal Khalsa's spot"

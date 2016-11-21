@@ -18,14 +18,14 @@ RSpec.describe MostRecentFlight, type: :model do
                           latitude: 37.773487,
                           longitude: -122.448171,
                           most_recent_flight: most_recent_flight,
-                          timestamp: 3.minutes.ago.strftime('%m/%d/%Y %I:%M:%S %p'))
+                          timestamp: 3.minutes.ago)
                         }
 
       let!(:waypoint_3) { create(:waypoint,
                           latitude: 37.770781,
                           longitude: -122.424538,
                           most_recent_flight: most_recent_flight,
-                          timestamp: 8.minutes.ago.strftime('%m/%d/%Y %I:%M:%S %p'))
+                          timestamp: 8.minutes.ago)
                         }
 
       it 'returns the distance between first and latest waypoints' do
