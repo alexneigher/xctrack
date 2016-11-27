@@ -9,26 +9,18 @@
           = add_user_to_map @rendered_user_ids, user, @current_group_id, class: 'btn btn-default btn-block btn-loading' do
             &#43;
 
-      .hidden-xs
-        .col-xs-8.col-sm-8
-          .text-center
-            = link_to user_path(user) do
-              = user.name
-              %br
-              %small
-                = user.waypoints.last.timestamp
-                &#8226;
-                = user.most_recent_flight.flight_length
-                km
+      .col-xs-8.col-sm-8
+        .text-center
+          = link_to user_path(user) do
+            = user.name
+            %br
+            %small
+              = user.waypoints.last.timestamp
+              &#8226;
+              = user.most_recent_flight.flight_length
+              km
 
-      .visible-xs
-        .col-xs-8.col-sm-8
-          .text-center.btn
-            = link_to user_path(user) do
-              = user.name
-              %br
-              %small
-                = user.waypoints.last.timestamp
+      
 
 - if @users.empty?
   %li.list-group-item
