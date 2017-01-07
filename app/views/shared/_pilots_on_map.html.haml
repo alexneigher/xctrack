@@ -6,12 +6,12 @@
           = remove_user_from_map_link @rendered_user_ids, user, @current_group_id, class: 'btn btn-success btn-block btn-loading' do
             %span.loading
               &#10003;
-            %i.fa.fa-spin.loading.fa-refresh.hidden
+            %i.fa.fa-spin.loading.fa-refresh.hidden-softly
         -else
           = add_user_to_map @rendered_user_ids, user, @current_group_id, class: 'btn btn-default btn-block btn-loading' do
             %span.loading
               &#43;
-            %i.fa.fa-spin.loading.fa-refresh.hidden
+            %i.fa.fa-spin.loading.fa-refresh.hidden-softly
 
       .col-xs-8.col-sm-8
         .text-center
