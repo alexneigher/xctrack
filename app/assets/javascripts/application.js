@@ -18,7 +18,7 @@
 
 
 $(function(){
-  $('.btn-loading').on('click tap', function(){
+  $('.btn-loading').on('click tap touchstart', function(){
     $(this).find('.loading').toggleClass('hidden-softly')
   })
 
