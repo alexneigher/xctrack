@@ -19,7 +19,7 @@
 
 $(function(){
   $('.btn-loading').on('click tap', function(){
-    $(this).html('<i class="fa fa-refresh fa-spin" />')
+    $(this).find('.loading').toggleClass('hidden')
   })
 
   $('.toggle-pilot-container').click(function(){
