@@ -18,7 +18,7 @@
 
 
 $(function(){
-  $('.btn-loading').on('click tap touchstart', function(){
+  $('.btn-loading').on('click tap touchstart', function(e){
     $(this).html('<i class="fa fa-refresh fa-spin" />')
   })
 

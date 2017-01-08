@@ -5,9 +5,12 @@
         -if @rendered_user_ids.include?(user.id)
           = remove_user_from_map_link @rendered_user_ids, user, @current_group_id, class: 'btn btn-success btn-block btn-loading' do
             &#10003;
+            %i.fa.fa-refresh.fa-spin{style:'position:absolute;opacity: 0;'}
+
         -else
           = add_user_to_map @rendered_user_ids, user, @current_group_id, class: 'btn btn-default btn-block btn-loading' do
             &#43;
+            %i.fa.fa-refresh.fa-spin{style:'position:absolute;opacity: 0;'}
 
       .col-xs-8.col-sm-8
         .text-center
