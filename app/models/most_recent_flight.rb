@@ -7,8 +7,8 @@ class MostRecentFlight < ActiveRecord::Base
   end
 
   def flight_length
-    puts 'HERE WE GO'
     return 0 if waypoints.length < 2
+    
     ordered_waypoints = waypoints.order(:timestamp)
     w1 = ordered_waypoints.first
     w2 = ordered_waypoints.last
