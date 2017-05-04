@@ -31,11 +31,7 @@ task xc_league: :environment do
                 in_reach_share_url: 'Sky',
                 tracker_type: 0
               },
-              {
-                name: 'David McMillan',
-                in_reach_share_url: 'davidmcmillan',
-                tracker_type: 0
-              },
+              
               {
                 name: 'Fabian Perez',
                 in_reach_share_url: 'FabianPerez1535',
@@ -121,11 +117,7 @@ task xc_league: :environment do
                 spot_share_url: '0frTepgYM6oA1SZq8JQDgMzgPEyq0uco4',
                 tracker_type: 1
               },
-              {
-                name: 'Jugdeep Aggarwal',
-                in_reach_share_url: 'Jug',
-                tracker_type: 0
-              },
+              
               {
                 name: 'Eric Ams',
                 spot_share_url: '0WoqzmO6XmGqc3YPNGXyIvAObTl3PFxls',
