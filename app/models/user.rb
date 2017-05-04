@@ -7,8 +7,13 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
-  validates :in_reach_share_url, presence: true, if: ->(user){user.in_reach_user?}
-  validates :spot_share_url, presence: true, if: ->(user){user.spot_user?}
+  validates :in_reach_share_url,
+             presence: true,
+             uniqueness: {case_sensitive: false}, if: ->(user){user.in_reach_user?}
+
+  validates :spot_share_url,
+             presence: true,
+             uniqueness: {case_sensitive: false}, if: ->(user){user.spot_user?}
 
   has_one :most_recent_flight
   has_many :waypoints, through: :most_recent_flight, dependent: :destroy
