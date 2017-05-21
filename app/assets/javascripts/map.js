@@ -66,8 +66,7 @@ function initialize() {
         '<strong>Velocity:</strong> '+ velocity +'<br>'+
         '<strong>Elevation:</strong> '+ elevation +'<br>'+
         '<strong>Time (Local):</strong> '+ timestamp +'<br>'+
-        '<strong>Text:</strong> <a class="map-link" href="https://maps.google.com/?daddr='+ latitude +','+ longitude +' " target="_blank">'+ text +'</a> <br>'+
-        '</div>';
+        '<strong>Text:</strong> ' + parse_text_for_link(text, latitude, longitude);
 
       google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){
         return function() {
@@ -100,4 +99,18 @@ function removeLoading(){
   $('#loading').fadeOut(500, function(){
     $(this).remove();
   });
+}
+
+function parse_text_for_link(text, latitude, longitude){
+  var str = ''
+   if (text.length > 0){
+    str = text +'<a class="map-link"' +
+         'href="https://maps.google.com/?daddr=' +
+         + latitude +','+ longitude +
+         '" target="_blank">' +
+         ' Click here for directions to me' +
+         '</a> <br></div>';
+   }
+
+   return str;
 }
