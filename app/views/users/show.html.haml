@@ -4,14 +4,15 @@
 .row
   .col-md-6
     .well
-      =link_to 'View on map', root_path(pilots: @user.id)
+      - if @user.most_recent_flight
+        %strong Most Recent Flight Created At: 
+        #{@user.most_recent_flight.created_at.strftime('%b %e, %Y %H:%M:%S %z')}
+      - else
+        No recent flight data
   .col-md-6
-    .well
-      %strong
-        - if @user.most_recent_flight
-          Most Recent Flight Created At: #{@user.most_recent_flight.created_at.strftime('%b %e, %Y %H:%M:%S %z')}
-        - else
-          No recent flight data
+    =link_to root_path(pilots: @user.id) do
+      .btn.btn-primary.btn-lg
+        View on map
 
 %dl.dl-horizontal
 
