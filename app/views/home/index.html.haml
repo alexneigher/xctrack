@@ -7,11 +7,13 @@
       #loading
         Loading...
 
-= render partial: 'shared/pilot_container'
+=# render partial: 'shared/pilot_container'
 
 #coordinates
   - @coordinates.each do |pilots|
     .pilot
       - pilots.each do |waypoint|
         .waypoint{data:{latitude: waypoint.latitude, longitude: waypoint.longitude, name:  waypoint.name, velocity:  waypoint.velocity, timestamp: waypoint.timestamp, elevation:  waypoint.elevation, text: waypoint.text}}
+
+
 
