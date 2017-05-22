@@ -1,14 +1,19 @@
 .list-group-item
-  %select.form-control{onchange: "pickGroup($(this));"}
-    %option{selected: 'selected', data: {url: root_path } }
-      = "All Groups"
+  .row
+    .col-xs-6
+      %select.form-control{onchange: "pickGroup($(this));"}
+        %option{selected: 'selected', data: {url: root_path } }
+          = "All Groups"
 
-    - Group.order(name: :asc).joins(:users).distinct.each do |group|
-      %option{selected: ('selected' if group.id == params[:id].to_i ), data: {url:group_path(group)} }
-        = "#{group.name} (#{group.users.count} pilots)"
+        - Group.order(name: :asc).joins(:users).distinct.each do |group|
+          %option{selected: ('selected' if group.id == params[:id].to_i ), data: {url:group_path(group)} }
+            = "#{group.name} (#{group.users.count} pilots)"
 
-    %option{data: {url: new_group_path}}
-      = "New Group"
+        %option{data: {url: new_group_path}}
+          = "New Group"
+    .col-xs-6
+      = show_all_path @users.map(&:id).join(','), @group, style:'margin-top:2px;', class: 'btn btn-sm btn-primary btn-block' do
+        All Pilots
 
 :javascript
   function pickGroup(el){
