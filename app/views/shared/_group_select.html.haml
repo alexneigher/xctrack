@@ -5,15 +5,16 @@
         %option{selected: 'selected', data: {url: root_path } }
           = "All Groups"
 
-        - Group.order(name: :asc).joins(:users).distinct.each do |group|
+        - Group.order(name: :asc).includes(:users).each do |group|
+          - next if group.users.empty?
           %option{selected: ('selected' if group.id == params[:id].to_i ), data: {url:group_path(group)} }
-            = "#{group.name} (#{group.users.count} pilots)"
+            = "#{group.name} (#{group.users.length} pilots)"
 
         %option{data: {url: new_group_path}}
           = "New Group"
     .col-xs-6
       = show_all_path @users.map(&:id).join(','), @group, style:'margin-top:2px;', class: 'btn btn-sm btn-primary btn-block' do
-        All Pilots
+        Show All Pilots
 
 :javascript
   function pickGroup(el){
