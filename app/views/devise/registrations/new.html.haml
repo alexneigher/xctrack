@@ -1,3 +1,7 @@
+.row.form-group
+  .col-md-4.col-md-offset-4
+    .btn.btn-default.btn-block{"data-target" => "#sign-up-modal", "data-toggle" => "modal", :type => "button"}
+      How do I sign up?
 .row
   .col-md-8.col-md-offset-2
     .panel.panel-default
@@ -48,6 +52,14 @@
                 = f.submit "Sign up", class: 'btn btn-success'
         = render "devise/shared/links"
 
+
+#sign-up-modal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/t37tG_4_kdI", :width => "100%"}
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} OK
 
 :javascript
   $(function(){
