@@ -10,7 +10,12 @@ function initialize() {
     center: new google.maps.LatLng(37,-100),
     zoom: 4,
     mapTypeId:google.maps.MapTypeId.TERRAIN,
-    disableDefaultUI: true
+    zoomControl: false,
+    mapTypeControl: true,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false
   };
 
   var bounds = new google.maps.LatLngBounds();
