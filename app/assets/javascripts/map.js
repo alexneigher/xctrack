@@ -14,7 +14,6 @@ function initialize() {
   };
 
   var bounds = new google.maps.LatLngBounds();
-  console.log(bounds);
   var waypoints = 0;
   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
@@ -109,6 +108,13 @@ function parse_text_for_link(text, latitude, longitude){
          + latitude +','+ longitude +
          '" target="_blank">' +
          ' Click here for directions to me' +
+         '</a> <br></div>';
+   }else{
+    str = text +'<a class="map-link"' +
+         'href="https://maps.google.com/?daddr=' +
+         + latitude +','+ longitude +
+         '" target="_blank">' +
+         'Click for directions to this pin' +
          '</a> <br></div>';
    }
 
