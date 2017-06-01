@@ -11,9 +11,13 @@ class User < ActiveRecord::Base
              presence: true,
              uniqueness: {case_sensitive: false}, if: ->(user){user.in_reach_user?}
 
+  validate :valid_in_reach_share_url, if: ->(user){user.in_reach_user?}
+
   validates :spot_share_url,
              presence: true,
              uniqueness: {case_sensitive: false}, if: ->(user){user.spot_user?}
+
+  validate :valid_spot_share_url, if: ->(user){user.spot_user?}
 
   has_one :most_recent_flight
   has_many :waypoints, through: :most_recent_flight, dependent: :destroy
@@ -58,6 +62,38 @@ class User < ActiveRecord::Base
   end
 
   private
+    def valid_in_reach_share_url
+
+      #if they put the entire url in there by mistake
+      if in_reach_share_url.include?('.com')
+        # try to grab the end part
+        user_string = in_reach_share_url.match('.com/(.*)').try(:[], 1)
+        
+        # if we match, just save it and move on
+        if user_string.present?
+          self.in_reach_share_url = user_string
+        else
+          self.errors.add(:in_reach_share_url, 'should only be the last part (after the "/")')
+        end
+
+      end
+    end
+
+    def valid_spot_share_url
+      #if they put the entire url in there by mistake
+      if spot_share_url.include?('glId=')
+        # try to grab the end part
+        user_string = spot_share_url.match('.glId=(.*)').try(:[], 1)
+        
+        # if we match, just save it and move on
+        if user_string.present?
+          self.spot_share_url = user_string
+        else
+          self.errors.add(:spot_share_url, 'should only be the last part (after the "glID=")')
+        end
+
+      end
+    end
 
     def formatted_datetime(datetime)
       if self.in_reach_user?
