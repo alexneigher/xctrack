@@ -25,7 +25,9 @@ function initialize() {
   $('.pilot').each(function(){
     waypoints = 0
     var flight_path_coords = []
-    $(this).find('.waypoint').each(function(i){
+    $(this).find('.waypoint').sort(function(a, b) {
+          return +$(a).data('counter') - +$(b).data('counter');
+      }).each(function(i){
       waypoints++
       var $waypoint = $(this);
 
@@ -45,7 +47,7 @@ function initialize() {
         icon = 'http://maps.google.com/mapfiles/ms/icons/blue.png'
         zIndex = 9999
       }
-      
+
       if (text){
         icon = 'http://maps.google.com/mapfiles/ms/icons/green.png'
         zIndex = 9999
