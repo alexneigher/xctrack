@@ -40,6 +40,11 @@ function initialize() {
       var zIndex = counter
       var icon = 'http://maps.google.com/mapfiles/ms/icons/red.png';
 
+      if (waypoints == 1){
+        //first point, make it blue
+        icon = 'http://maps.google.com/mapfiles/ms/icons/blue.png'
+
+      }
       if (text){
         icon = 'http://maps.google.com/mapfiles/ms/icons/green.png'
         zIndex = 9999
@@ -51,7 +56,7 @@ function initialize() {
         // Supply the map and position parameters as usual.
         position: new google.maps.LatLng(latitude, longitude),
         map: map,
-        label: {text: "" + counter, color: "white",fontSize: "9px"},
+        label: {text: name[0], color: "white", fontSize: "10px"},
         //opacity: 0, this will come from equation like ( 100 - (16.6 * n) ) / 100
         icon: {
           url: icon,
