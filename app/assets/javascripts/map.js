@@ -43,8 +43,9 @@ function initialize() {
       if (waypoints == 1){
         //first point, make it blue
         icon = 'http://maps.google.com/mapfiles/ms/icons/blue.png'
-
+        zIndex = 9999
       }
+      
       if (text){
         icon = 'http://maps.google.com/mapfiles/ms/icons/green.png'
         zIndex = 9999
