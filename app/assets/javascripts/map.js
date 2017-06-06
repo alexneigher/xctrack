@@ -36,12 +36,13 @@ function initialize() {
       var name = $waypoint.data('name');
       var timestamp = $waypoint.data('timestamp');
       var text = $waypoint.data('text');
-      var zIndex = 0
+      var counter = $waypoint.data('counter');
+      var zIndex = counter
       var icon = 'http://maps.google.com/mapfiles/ms/icons/red.png';
 
       if (text){
         icon = 'http://maps.google.com/mapfiles/ms/icons/green.png'
-        zIndex = 1
+        zIndex = 9999
       }
 
       flight_path_coords.push({lat: parseFloat(latitude), lng: parseFloat(longitude)})
@@ -50,7 +51,7 @@ function initialize() {
         // Supply the map and position parameters as usual.
         position: new google.maps.LatLng(latitude, longitude),
         map: map,
-        label: name[0],
+        label: {text: "" + counter, color: "white",fontSize: "9px"},
         //opacity: 0, this will come from equation like ( 100 - (16.6 * n) ) / 100
         icon: {
           url: icon,
