@@ -1,5 +1,6 @@
 -@users.each do |user|
-  %li.list-group-item
+  - length = user.most_recent_flight.flight_length
+  %li.list-group-item.pilot-on-map{data: {flight_length: length, name: user.name}}
     .row
       .col-xs-4.col-sm-4
         -if @rendered_user_ids.include?(user.id)
@@ -20,7 +21,7 @@
             %small
               = user.waypoints.last.timestamp
               &#8226;
-              = user.most_recent_flight.flight_length
+              = length
               km
 
 

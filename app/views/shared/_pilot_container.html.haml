@@ -4,7 +4,9 @@
       %ul.list-group
         = render partial: 'shared/group_select'
         =# render partial: 'shared/time_select'
-        = render partial: 'shared/pilots_on_map'
+        = render 'shared/pilot_order_buttons'
+        #pilot-names
+          = render partial: 'shared/pilots_on_map'
       .row
         - if @group.present?
           .col-md-6.form-group
