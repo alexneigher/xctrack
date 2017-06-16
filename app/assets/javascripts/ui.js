@@ -4,7 +4,7 @@ $(function(){
       var divList = $(".pilot-on-map");
       divList.sort(function(a, b){
 
-        return $(a).data("name") - $(b).data("name")
+        return $(a).data("name") > $(b).data("name")
       });
 
       $("#pilot-names").html(divList);
