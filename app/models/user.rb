@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
       if in_reach_share_url.include?('.com')
         # try to grab the end part
         user_string = in_reach_share_url.match('.com/(.*)').try(:[], 1)
-        
+
         # if we match, just save it and move on
         if user_string.present?
           self.in_reach_share_url = user_string
@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
       if spot_share_url.include?('glId=')
         # try to grab the end part
         user_string = spot_share_url.match('.glId=(.*)').try(:[], 1)
-        
+
         # if we match, just save it and move on
         if user_string.present?
           self.spot_share_url = user_string
