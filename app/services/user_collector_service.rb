@@ -1,5 +1,4 @@
 class UserCollectorService
-  attr_accessor :users, :users_on_map, :rendered_user_ids
 
   def initialize(group = nil, params = {})
     @group = group
