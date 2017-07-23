@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   end
 
   def init_most_recent_flight
-    most_recent_flight.destroy if most_recent_flight
+    MostRecentFlight.where(user_id: self.id).destroy_all
     create_most_recent_flight
   end
 
