@@ -1,7 +1,7 @@
 #pilots-container{class: ('hidden' if @users_on_map.any?)}
   .col-lg-4.col-md-6.col-xs-11.no-padding.pilot-container-block
     .well
-      %ul.list-group
+      %ul.list-group{style: 'margin-bottom: 10px;'}
         = render partial: 'shared/group_select'
         =# render partial: 'shared/time_select'
         = render 'shared/pilot_order_buttons'
