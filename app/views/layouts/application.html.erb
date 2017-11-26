@@ -42,8 +42,6 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" id='toggleLocation'>Show My Location</a></li>
-
             <%- if user_signed_in? %>
               <%= render partial: 'shared/pilot_container_toggle' %>
               <li class="visible-xs"><%= link_to "My Profile", user_path(current_user) %></li>

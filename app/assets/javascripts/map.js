@@ -3,6 +3,17 @@ $(function(){
   if (typeof google !== 'undefined') {
     google.maps.event.addDomListener(window, 'load', initialize);
   }
+
+  //bind click to enable location
+  $('#toggleLocation').click(function(){
+    $(this).html('working...');
+    
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(showPosition);
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  })
 });
 
 function initialize() {
@@ -18,9 +29,9 @@ function initialize() {
     fullscreenControl: false
   };
 
-  var bounds = new google.maps.LatLngBounds();
+  bounds = new google.maps.LatLngBounds();
   var waypoints = 0;
-  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
   $('.pilot').each(function(){
     waypoints = 0
@@ -134,3 +145,28 @@ function parse_text_for_link(text, latitude, longitude){
 
    return str;
 }
+
+
+function showPosition(position) {
+  $('#toggleLocation').remove();
+  var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  
+  if (typeof(customMarker) == 'undefined'){
+    console.log('first time');
+    customMarker = new google.maps.Marker({
+      position: myLatLng,
+      icon:{
+        url: 'http://maps.google.com/mapfiles/dir_0.png',
+      },
+      map: map,
+    });
+
+  }else{
+    console.log('update it');
+    customMarker.setPosition(myLatLng)
+  }
+  
+  map.panTo(myLatLng);
+}
+
+

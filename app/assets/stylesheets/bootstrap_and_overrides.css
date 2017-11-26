@@ -27,6 +27,13 @@
   transition: none;
 }
 
+#toggleLocation{
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  z-index: 999;
+}
+
 
 .superluminal-logo{
   background: linear-gradient(135deg, #f28b41,#de5837,#af5f31);
