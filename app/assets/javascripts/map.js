@@ -172,7 +172,8 @@ function showPosition(position) {
     customMarker.setPosition(myLatLng)
   }
   
-  map.panTo(myLatLng);
+  bounds.extend(customMarker.position);
+  map.fitBounds(bounds);
 }
 
 
