@@ -9,6 +9,11 @@ $(function(){
     $(this).html('working...');
     
     if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(pos){
+        alert("lat " + pos.coords.latitude);
+        alert("lon " + pos.coords.longitude);
+
+      })
       navigator.geolocation.watchPosition(showPosition);
     } else {
       alert("Geolocation is not supported by this browser.");
