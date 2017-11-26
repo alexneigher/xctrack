@@ -9,12 +9,13 @@ $(function(){
     $(this).html('working...');
     
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(pos){
-        alert("lat " + pos.coords.latitude);
-        alert("lon " + pos.coords.longitude);
+      options = {
+        enableHighAccuracy: false,
+        timeout: 5000,
+        maximumAge: 0
+      };
 
-      })
-      navigator.geolocation.watchPosition(showPosition);
+      navigator.geolocation.watchPosition(showPosition, alert('error'), option);
     } else {
       alert("Geolocation is not supported by this browser.");
     }
