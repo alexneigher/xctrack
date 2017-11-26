@@ -57,16 +57,16 @@ function initialize() {
       var text = $waypoint.data('text');
       var counter = $waypoint.data('counter');
       var zIndex = counter
-      var icon = 'http://maps.google.com/mapfiles/ms/icons/red.png';
+      var icon = 'https://maps.google.com/mapfiles/ms/icons/red.png';
 
       if (waypoints == 1){
         //first point, make it blue
-        icon = 'http://maps.google.com/mapfiles/ms/icons/blue.png'
+        icon = 'https://maps.google.com/mapfiles/ms/icons/blue.png'
         zIndex = 9999
       }
 
       if (text){
-        icon = 'http://maps.google.com/mapfiles/ms/icons/green.png'
+        icon = 'https://maps.google.com/mapfiles/ms/icons/green.png'
         zIndex = 9999
       }
 
@@ -162,7 +162,7 @@ function showPosition(position) {
     customMarker = new google.maps.Marker({
       position: myLatLng,
       icon:{
-        url: 'http://maps.google.com/mapfiles/dir_0.png',
+        url: 'https://maps.google.com/mapfiles/dir_0.png',
       },
       map: map,
     });
