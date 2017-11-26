@@ -15,7 +15,7 @@ $(function(){
         maximumAge: 0
       };
 
-      navigator.geolocation.watchPosition(showPosition, function(d){alert(d)}, options);
+      navigator.geolocation.watchPosition(showPosition, function(d){alert(d.message)}, options);
     } else {
       alert("Geolocation is not supported by this browser.");
     }
