@@ -8,9 +8,11 @@ class MostRecentFlight < ActiveRecord::Base
 
   def flight_length
     return 0 if waypoints.length < 2
-    
-    ordered_waypoints = waypoints.order(:timestamp)
-    TrackLengthService.new(ordered_waypoints).calculate_length
+    TrackLengthService.new(waypoints).total_distance
   end
 
+  def straight_line_distance
+    return 0 if waypoints.length < 2
+    TrackLengthService.new(waypoints).straight_line_distance
+  end
 end
