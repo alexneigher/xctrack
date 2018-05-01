@@ -28,8 +28,12 @@ RSpec.describe MostRecentFlight, type: :model do
                           timestamp: 8.minutes.ago)
                         }
 
-      it 'returns the distance between first and latest waypoints' do
+      it 'returns the distance between all waypoints' do
         expect(most_recent_flight.flight_length).to eq 2.10
+      end
+
+      it 'returns the straight line distance' do
+        expect(most_recent_flight.straight_line_distance).to eq 2.10
       end
     end
   end
