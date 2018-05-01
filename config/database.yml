@@ -2,7 +2,6 @@ development:
   adapter: postgresql
   database: xctrack_development
   host: localhost
-  user: postgres
   pool: 5
   timeout: 5000
 
@@ -23,7 +22,6 @@ test: &test
   adapter: postgresql
   database: xctrack_test
   host: localhost
-  user: postgres
   pool: 5
   timeout: 5000
 
