@@ -33,6 +33,9 @@
   z-index: 999;
 }
 
+.btn.disabled{
+  opacity: 0.25 !important;
+}
 
 .ffl-logo{
   background-color: transparent;

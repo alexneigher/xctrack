@@ -1,8 +1,8 @@
 .list-group-item
   .row
     .col-xs-6
-      #updateMapButton.btn.btn-primary{onclick: "$('#pilot-names form').submit();", class: (' hidden' unless @users_on_map.any?)}
-        Update Map
+      #updateMapButton.btn.btn-primary.btn-block{onclick: "$('#pilot-names form').submit();", class: (' disabled' unless @users_on_map.any?)}
+        Show Map
       
     .col-xs-6
       %select.form-control{onchange: "pickGroup($(this));"}

@@ -18,8 +18,8 @@ $(function(){
 
   //this controls the adding and removing pilot functionality
   $('.pilot-toggle-button').click(function(){
-    $('#updateMapButton').removeClass('hidden');
-    
+    $('#updateMapButton').removeClass('disabled');
+
     if ( $(this).hasClass('btn-success') ){
       $(this)
         .removeClass('btn-success')
