@@ -1,4 +1,4 @@
-class MostRecentFlight < ActiveRecord::Base
+class MostRecentFlight < ApplicationRecord
   belongs_to :user
   has_many :waypoints, dependent: :destroy
 

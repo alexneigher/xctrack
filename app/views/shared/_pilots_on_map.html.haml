@@ -1,36 +1,39 @@
--@users.each do |user|
-  - length = user.most_recent_flight.flight_length
-  - straight_distance = user.most_recent_flight.straight_line_distance
-  - last_point = distance_of_time_in_words(user.waypoints.last.timestamp, Time.now)
-  %li.list-group-item.pilot-on-map{data: {flight_length: length, name: user.name, straight_distance: straight_distance}}
-    .row
-      .col-xs-4.col-sm-4
-        -if @rendered_user_ids.include?(user.id)
-          = remove_user_from_map_link @rendered_user_ids, user, @current_group_id, class: 'btn btn-success btn-block btn-loading' do
-            &#10003;
-            %i.fa.fa-refresh.fa-spin{style:'position:absolute;opacity: 0;'}
+- path = @current_group_id.present? ? group_path(@current_group_id) : root_path
 
-        -else
-          = add_user_to_map @rendered_user_ids, user, @current_group_id, class: 'btn btn-default btn-block btn-loading' do
-            &#43;
-            %i.fa.fa-refresh.fa-spin{style:'position:absolute;opacity: 0;'}
+= form_tag path, method: :get do
+  - @users.each do |user|
+    - length = user.most_recent_flight.flight_length
+    - straight_distance = user.most_recent_flight.straight_line_distance
+    - last_point = distance_of_time_in_words(user.waypoints.last.timestamp, Time.now)
+    %li.list-group-item.pilot-on-map{data: {flight_length: length, name: user.name, straight_distance: straight_distance}}
+      .row
+        .col-xs-4.col-sm-4
+          -if @rendered_user_ids.include?(user.id)
+            %a.btn.btn-default.btn-success.btn-block.pilot-toggle-button.remove-pilot-btn{data: {pilot_id: user.id}}
+              &#10003;
+          -else
+            %a.btn.btn-default.btn-default.btn-block.pilot-toggle-button.add-pilot-btn{data: {pilot_id: user.id}}
+              &#43;
+            
+        .col-xs-8.col-sm-8
+          .text-center
+            = link_to user_path(user) do
+              = user.name
+              %br
+              %small
+                = last_point
+                ago
+                &#8226;
+                &Delta;
+                = length
+                km
+                &#8226
+                |
+                = straight_distance
+                km
 
-      .col-xs-8.col-sm-8
-        .text-center
-          = link_to user_path(user) do
-            = user.name
-            %br
-            %small
-              = last_point
-              ago
-              &#8226;
-              &Delta;
-              = length
-              km
-              &#8226
-              |
-              = straight_distance
-              km
+  = hidden_field_tag 'pilots', @rendered_user_ids.join(',')
+  = submit_tag 'Update Map', name: nil, class: 'hidden'
 
 
 
@@ -39,4 +42,4 @@
     Hmm, it must be unflyable today :(
 
 
-= link_to 'Superluminal Studios LLC', 'http://www.superluminal.co', target:'_blank', class: 'superluminal-logo'
+= link_to 'FREE FLIGHT LAB', 'http://www.freeflightlab.org', target:'_blank', class: 'ffl-logo'

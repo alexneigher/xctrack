@@ -18,10 +18,7 @@
 
 
 $(function(){
-  $('.btn-loading').on('click tap touchstart', function(e){
-    $(this).html('<i class="fa fa-refresh fa-spin" />')
-  })
-
+ 
   $('.toggle-pilot-container').click(function(){
     $('#pilots-container').toggleClass('hidden');
     if($(window).width() <= 500){

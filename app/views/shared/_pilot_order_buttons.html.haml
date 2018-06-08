@@ -1,6 +1,26 @@
 .list-group-item
   .row
-    .col-xs-8.col-xs-offset-2
-      .btn.btn-sm.btn-block.btn-default.order-by-distance.pull-right
-        Order By Distance
+    .col-xs-6
+      #updateMapButton.btn.btn-primary.hidden{onclick: "$('#pilot-names form').submit();"}
+        Update Map
+      
+    .col-xs-6
+      %select.form-control{onchange: "pickGroup($(this));"}
+        %option{selected: 'selected', data: {url: root_path } }
+          = "All Groups"
+
+        - Group.order(name: :asc).includes(:users).each do |group|
+          - next if group.users.empty?
+          %option{selected: ('selected' if group.id == params[:id].to_i ), data: {url:group_path(group)} }
+            = "#{group.name} (#{group.users.length} pilots)"
+
+        %option{data: {url: new_group_path}}
+          = "New Group"
+ 
     
+:javascript
+    function pickGroup(el){
+      var $this = el
+      var data = $this.find(':selected').data('url');
+      location.assign(data)
+    }
