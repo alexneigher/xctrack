@@ -1,7 +1,7 @@
 .list-group-item
   .row
     .col-xs-6
-      #updateMapButton.btn.btn-primary.hidden{onclick: "$('#pilot-names form').submit();"}
+      #updateMapButton.btn.btn-primary{onclick: "$('#pilot-names form').submit();", class: (' hidden' unless @users_on_map.any?)}
         Update Map
       
     .col-xs-6
