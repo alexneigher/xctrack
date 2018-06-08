@@ -62,11 +62,12 @@ a.map-link:hover{
   float: none;
   margin: auto;
   box-shadow: 0 0 9px;
-  overflow-y: scroll;
-  max-height: 75vh;
+  
 }
 
 #pilots-container .pilot-container-block .well{
   margin-bottom: 0px;
   padding-bottom: 0px;
+  overflow-y: scroll;
+  max-height: 70vh;
 }

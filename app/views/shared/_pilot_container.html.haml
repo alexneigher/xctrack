@@ -1,8 +1,9 @@
 #pilots-container{class: ('hidden' if @users_on_map.any?)}
   .col-lg-4.col-md-6.col-xs-11.no-padding.pilot-container-block
+    %ul.list-group{style: 'margin: 0'}
+      = render 'shared/pilot_order_buttons'
     .well
       %ul.list-group{style: 'margin-bottom: 10px;'}
-        = render 'shared/pilot_order_buttons'
         #pilot-names
           = render partial: 'shared/pilots_on_map'
       .row
