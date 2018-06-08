@@ -40,21 +40,23 @@ function update_form_ids(){
   //find all "checked" buttons and add them to the input
   $form_input = $('#pilots');
   $form_input.val('');
-  pilot_ids = []
+  pilot_ids = new Array;
   
   $('.pilot-toggle-button').each(function(){
     //if btn-success is present, add this ID to the form
     if ( $(this).hasClass('btn-success') ){
 
-      pilot_ids += $(this).data('pilot-id') +', '
+      pilot_ids.push( $(this).data('pilot-id'));
 
     }else if ( $(this).hasClass('btn-default') ){
-
       var index = pilot_ids.indexOf($(this).data('pilot-id'));
 
-      if (index !== -1) pilot_ids.splice(index, 1);
+      if (index !== -1){
+        pilot_ids.splice(index, 1);
+      }
     }
-  })
+  });
 
+  console.log(pilot_ids)
   $form_input.val(pilot_ids)
 }
