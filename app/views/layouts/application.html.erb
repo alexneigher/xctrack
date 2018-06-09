@@ -43,6 +43,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
             <%- if user_signed_in? %>
+              <li style="margin-top: 6px;">
+                <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support XcTrack', '#46b798', 'W7W7EPPV');kofiwidget2.draw();</script>
+              </li> 
               <%= render partial: 'shared/pilot_container_toggle' %>
               <li class="visible-xs"><%= link_to "My Profile", user_path(current_user) %></li>
               <li class="visible-xs"><%= link_to "My Groups", groups_path %></li>
@@ -61,10 +64,14 @@
                 </ul>
               </li>
             <% else %>
+              <li style="margin-top: 6px;">
+                <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support XcTrack', '#46b798', 'W7W7EPPV');kofiwidget2.draw();</script>
+              </li> 
               <%= render partial: 'shared/pilot_container_toggle' %>
               <li><%= link_to('Sign Up', new_user_registration_path)  %></li>
               <li><%= link_to('Login', new_user_session_path)  %></li>
             <% end %>
+
 
           </ul>
         </div>
