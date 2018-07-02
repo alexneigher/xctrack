@@ -4,7 +4,7 @@
   - @users.each do |user|
     - length = user.most_recent_flight.flight_length
     - straight_distance = user.most_recent_flight.straight_line_distance
-    - last_point = distance_of_time_in_words(user.waypoints.last.timestamp, Time.now)
+    - last_point = distance_of_time_in_words((user.waypoints.last&.timestamp || Time.now), Time.now)
     %li.list-group-item.pilot-on-map{data: {flight_length: length, name: user.name, straight_distance: straight_distance}}
       .row
         .col-xs-4.col-sm-4
