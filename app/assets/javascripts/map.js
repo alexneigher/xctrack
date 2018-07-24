@@ -108,7 +108,7 @@ function initialize() {
     }) //waypoints each
 
     var lineSymbol = {
-      path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+      path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW
     };
 
     var flightPath = new google.maps.Polyline({
