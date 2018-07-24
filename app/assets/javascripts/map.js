@@ -119,7 +119,8 @@ function initialize() {
       strokeWeight: 1,
       icons: [{
         icon: lineSymbol,
-        offset: '50%'
+        offset: '50%',
+        repeat: '30px'
       }],
     });
 
