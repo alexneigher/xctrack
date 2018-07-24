@@ -107,12 +107,20 @@ function initialize() {
 
     }) //waypoints each
 
+    var lineSymbol = {
+      path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+    };
+
     var flightPath = new google.maps.Polyline({
       path: flight_path_coords,
       geodesic: true,
       strokeColor: '#000',
       strokeOpacity: 1.0,
-      strokeWeight: 1
+      strokeWeight: 1,
+      icons: [{
+        icon: lineSymbol,
+        offset: '50%'
+      }],
     });
 
     flightPath.setMap(map);
