@@ -71,7 +71,7 @@ class User < ApplicationRecord
 
         # if we match, just save it and move on
         if user_string.present?
-          self.in_reach_share_url = user_string
+          self.in_reach_share_url = user_string.strip
         else
           self.errors.add(:in_reach_share_url, 'should only be the last part (after the "/")')
         end
@@ -87,7 +87,7 @@ class User < ApplicationRecord
 
         # if we match, just save it and move on
         if user_string.present?
-          self.spot_share_url = user_string
+          self.spot_share_url = user_string.strip
         else
           self.errors.add(:spot_share_url, 'should only be the last part (after the "glID=")')
         end
