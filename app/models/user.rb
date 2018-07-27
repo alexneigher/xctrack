@@ -77,6 +77,8 @@ class User < ApplicationRecord
         end
 
       end
+
+      self.in_reach_share_url = in_reach_share_url.strip
     end
 
     def valid_spot_share_url
@@ -93,6 +95,8 @@ class User < ApplicationRecord
         end
 
       end
+
+      self.spot_share_url = spot_share_url.strip
     end
 
     def formatted_datetime(datetime)
