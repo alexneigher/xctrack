@@ -58,7 +58,7 @@ class User < ApplicationRecord
       CoordinateFetcherService.new(raw_xml, self).extract_coordinates
     end
 
-    return self.waypoints
+    return self.waypoints.order(timestamp: :desc)
   end
 
   private

@@ -95,7 +95,7 @@ function initialize() {
         '<strong>Longitude:</strong> '+ longitude +'<br>'+
         '<strong>Velocity:</strong> '+ velocity +'<br>'+
         '<strong>Elevation:</strong> '+ elevation +'<br>'+
-        '<strong>Time (Local):</strong> '+ timestamp +'<br>'+
+        '<strong>Time:</strong> '+ timestamp +'<br>'+
         '<strong>Text:</strong> ' + parse_text_for_link(text, latitude, longitude);
 
       google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow){
