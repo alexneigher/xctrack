@@ -7,8 +7,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
-  validate :valid_in_reach_share_url, if: ->(user){user.in_reach_user?}
-
   validates :spot_share_url,
              presence: true,
              uniqueness: {case_sensitive: false}, if: ->(user){user.spot_user?}
