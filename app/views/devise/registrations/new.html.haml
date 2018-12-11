@@ -22,6 +22,9 @@
             %label.form-group
               = f.radio_button :tracker_type, 'in_reach_user', checked: true
               InReach Share URL
+            = link_to "#", style:'color: #0000EE;' do
+              %i.fa.fa-info-circle
+              How to find this?
             = f.text_field :in_reach_share_url, placeholder: 'https://share.garmin.com/Feed/Share/YOUR_URL_HERE', class: 'form-control radio-control'
             %hr
             %label.form-group
