@@ -24,7 +24,7 @@ class User < ApplicationRecord
   enum tracker_type: [ :in_reach_user, :spot_user ]
 
   def full_api_url
-    d1 = formatted_datetime(100.hours.ago)
+    d1 = formatted_datetime(6.days.ago)
     d2 = formatted_datetime(DateTime.current)
 
     if self.in_reach_user?
