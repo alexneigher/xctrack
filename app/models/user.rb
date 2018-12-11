@@ -7,10 +7,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
-  validates :in_reach_share_url,
-             presence: true,
-             uniqueness: {case_sensitive: false}, if: ->(user){user.in_reach_user?}
-
   validate :valid_in_reach_share_url, if: ->(user){user.in_reach_user?}
 
   validates :spot_share_url,
@@ -28,11 +24,11 @@ class User < ApplicationRecord
   enum tracker_type: [ :in_reach_user, :spot_user ]
 
   def full_api_url
-    d1 = formatted_datetime(12.hours.ago)
+    d1 = formatted_datetime(100.hours.ago)
     d2 = formatted_datetime(DateTime.current)
 
     if self.in_reach_user?
-      "https://share.delorme.com/feed/Share/#{in_reach_share_url}?d1=#{d1}&d2=#{d2}"
+      "#{in_reach_share_url}?d1=#{d1}&d2=#{d2}"
     else
       "https://api.findmespot.com/spot-main-web/"\
       "consumer/rest-api/2.0/public/feed/#{spot_share_url}/"\
@@ -62,24 +58,6 @@ class User < ApplicationRecord
   end
 
   private
-    def valid_in_reach_share_url
-
-      #if they put the entire url in there by mistake
-      if in_reach_share_url.include?('.com')
-        # try to grab the end part
-        user_string = in_reach_share_url.match('.com/(.*)').try(:[], 1)
-
-        # if we match, just save it and move on
-        if user_string.present?
-          self.in_reach_share_url = user_string.strip
-        else
-          self.errors.add(:in_reach_share_url, 'should only be the last part (after the "/")')
-        end
-
-      end
-
-      self.in_reach_share_url = in_reach_share_url.strip
-    end
 
     def valid_spot_share_url
       #if they put the entire url in there by mistake
