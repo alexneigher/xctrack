@@ -22,7 +22,7 @@
             %label.form-group
               = f.radio_button :tracker_type, 'in_reach_user', checked: true
               InReach Share URL
-            = link_to "#", style:'color: #0000EE;' do
+            %a{"data-toggle" => "modal", "data-target" => "#how-to-url-modal", style: 'color:#428bca;'}
               %i.fa.fa-info-circle
               How to find this?
             = f.text_field :in_reach_share_url, placeholder: 'https://share.garmin.com/Feed/Share/YOUR_URL_HERE', class: 'form-control radio-control'
@@ -50,6 +50,29 @@
                 = f.submit "Sign up", class: 'btn btn-success'
         = render "devise/shared/links"
 
+
+#how-to-url-modal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        = image_tag "howto.gif", style: 'width:100%;'
+        %hr
+        %p
+          Everyone's Share Url is slightly different. Yours will follow the pattern of either:
+        .text-center
+          %strong
+            https://us0.inreach.garmin.com/feed/share/YOUR SHARE NAME
+          %br 
+          OR
+          %br
+          %strong
+            https://share.garmin.com/Feed/Share/YOUR SHARE NAME
+        %br
+        %p 
+          Find yours at
+          = link_to "https://explore.garmin.com/Social","https://explore.garmin.com/Social", target: "_blank", style: 'color: #428bca;'
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} OK
 
 #sign-up-modal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
