@@ -22,12 +22,7 @@
         %label
           = f.radio_button :tracker_type, 'in_reach_user', checked: true
           InReach Share URL
-          .form-inline{style: 'margin-top:10px;'}
-            %span.hidden-xs
-              http://www.share.delorme.com/
-            %span.visible-xs{style: 'font-size: 10px;'}
-              http://www.share.delorme.com/
-            = f.text_field :in_reach_share_url, class: 'form-control radio-control'
+          = f.text_field :in_reach_share_url, placeholder: 'https://share.garmin.com/Feed/Share/YOUR_URL_HERE', class: 'form-control radio-control'
         %hr
         %label
           = f.radio_button :tracker_type, 'spot_user'
