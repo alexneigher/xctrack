@@ -77,13 +77,13 @@ class CoordinateFetcherService
       return 0 unless str
 
       array = str.split(' m ')
-      return "#{array[0].to_i}m/ #{(array[0].to_i * 3.280839895).to_i}ft"
+      return meters_to_feet(array[0])
     end
 
     def meters_to_feet(height_meters)
       return '' unless height_meters
 
-      "#{(height_meters.to_i * 3.280839895).round}ft"
+      return "#{height_meters.to_i}m/ #{(height_meters.to_i * 3.280839895).to_i}ft"
     end
 
 end
