@@ -31,7 +31,7 @@ class CoordinateFetcherService
         name: point.css('messengerName').try(:text).try(:strip).presence || 'Spot User',
         latitude: point.css('latitude').try(:text).try(:strip),
         longitude: point.css('longitude').try(:text).try(:strip),
-        elevation: '',
+        elevation: meters_to_feet(point.css('altitude').try(:text).try(:strip)),
         velocity: '',
         timestamp: format_date_time(point),
         text: format_text_message(point)
@@ -78,6 +78,12 @@ class CoordinateFetcherService
 
       array = str.split(' m ')
       return "#{array[0].to_i}m/ #{(array[0].to_i * 3.280839895).to_i}ft"
+    end
+
+    def meters_to_feet(height_meters)
+      return '' unless height_meters
+
+      "#{(height_meters.to_i * 3.280839895).round}ft"
     end
 
 end
