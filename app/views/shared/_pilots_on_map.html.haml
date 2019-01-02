@@ -2,8 +2,10 @@
 
 = form_tag path, method: :get do
   - @users.each do |user|
+    - next unless user.most_recent_flight.present?
     - length = user.most_recent_flight.flight_length
     - straight_distance = user.most_recent_flight.straight_line_distance
+    
     - if user.waypoints.order(:timestamp).last&.timestamp.present?
       - last_point = distance_of_time_in_words((user.waypoints.order(:timestamp).last&.timestamp || Time.now), Time.now)
     - else

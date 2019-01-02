@@ -11,6 +11,10 @@ class User < ApplicationRecord
              presence: true,
              uniqueness: {case_sensitive: false}, if: ->(user){user.spot_user?}
 
+  validates :in_reach_share_url,
+             presence: true,
+             uniqueness: {case_sensitive: false}, if: ->(user){user.in_reach_user?}
+
   validate :valid_spot_share_url, if: ->(user){user.spot_user?}
 
   has_one :most_recent_flight
