@@ -16,6 +16,7 @@ class User < ApplicationRecord
              uniqueness: {case_sensitive: false}, if: ->(user){user.in_reach_user?}
 
   validate :valid_spot_share_url, if: ->(user){user.spot_user?}
+  validate :valid_in_reach_share_url, if: ->(user){user.in_reach_user?}
 
   has_one :most_recent_flight
   has_many :waypoints, through: :most_recent_flight, dependent: :destroy
@@ -60,6 +61,14 @@ class User < ApplicationRecord
   end
 
   private
+    def valid_in_reach_share_url
+      matches = in_reach_share_url.match('/feed\/share/').try(:[], 0)
+      if matches.present?
+        self.in_reach_share_url = in_reach_share_url.strip
+      else
+        self.errors.add(:in_reach_share_url, 'needs to bein the format of https://share.garmin.com/feed/share/{inreach name here}')
+      end
+    end
 
     def valid_spot_share_url
       #if they put the entire url in there by mistake
