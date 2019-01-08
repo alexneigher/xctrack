@@ -1,7 +1,7 @@
 require 'enumerator'
 class TrackLengthService
   def initialize(track)
-    @track = track&.sort_by(&:timestamp)
+    @track = track.select{|w| w.timestamp.present?}.sort_by{|w| w.timestamp }
   end
 
   def total_distance
