@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  get '/.well-known/brave-rewards-verification.txt', to: redirect('/brave-rewards-verification.txt')
 end
