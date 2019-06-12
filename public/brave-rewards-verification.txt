@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: xctrack.me 
+Token: f6bc41dc8504222535846909e6baea386a2ad5221f9044dce718efdde0b79bbe
