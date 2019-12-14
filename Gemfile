@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'httparty'
-gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'nokogiri', '~> 1.10'
 
 gem "twitter-bootstrap-rails"
 # Use jquery as the JavaScript library
