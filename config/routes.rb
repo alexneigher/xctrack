@@ -16,4 +16,12 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/.well-known/brave-rewards-verification.txt', to: redirect('/brave-rewards-verification.txt')
+
+
+  namespace :api do
+    resources :groups do
+      get :most_recent_waypoints
+    end
+  end
+
 end
