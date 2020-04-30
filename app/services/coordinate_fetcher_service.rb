@@ -28,7 +28,7 @@ class CoordinateFetcherService
 
     def format_spot_waypoint(point)
       {
-        name: point.css('messengerName').try(:text).try(:strip).presence || @user.name || "Spot User",
+        name: @user.name || "Spot User",
         latitude: point.css('latitude').try(:text).try(:strip),
         longitude: point.css('longitude').try(:text).try(:strip),
         elevation: meters_to_feet(point.css('altitude').try(:text).try(:strip)),
