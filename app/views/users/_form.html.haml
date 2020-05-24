@@ -17,6 +17,15 @@
       .form-group
         %label Email
         = f.text_field :email, class: 'form-control'
+
+      .bg-info{style: 'padding: 5px 10px;border-radius: 4px'}
+        %label
+          = f.check_box :tracking_enabled
+          Tracking enabled
+        %br
+        .small.text-muted
+          If you uncheck this box, xctrack will not attempt to fetch data from your tracker. You can use this feature if you are going on vacation, using your tracker for non-flying purposes, or do not want to share your tracking with the public.
+
     .col-md-6
       .form-group.well
         %label

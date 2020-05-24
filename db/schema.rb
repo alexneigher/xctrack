@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121012525) do
+ActiveRecord::Schema.define(version: 20200524155023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20161121012525) do
     t.boolean  "admin",                  default: false
     t.integer  "tracker_type",           default: 0
     t.string   "spot_share_url"
+    t.boolean  "tracking_enabled",       default: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
