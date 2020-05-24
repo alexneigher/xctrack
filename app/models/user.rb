@@ -23,7 +23,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :groups, join_table:'user_groupings'
 
   scope :with_waypoints, lambda { joins(most_recent_flight: :waypoints).uniq }
-
+  scope :tracking_enabled, -> { where(tracking_enabled: true) }
   enum tracker_type: [ :in_reach_user, :spot_user ]
 
   def full_api_url

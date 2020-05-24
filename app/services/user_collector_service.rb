@@ -8,9 +8,9 @@ class UserCollectorService
   #check for group members, or just all users, memoize them for later use
   def users
     if @group
-      @users ||= @group.users.with_waypoints.order(:name)
+      @users ||= @group.users.tracking_enabled.with_waypoints.order(:name)
     else
-      @users ||= User.with_waypoints.order(:name)
+      @users ||= User.tracking_enabled.with_waypoints.order(:name)
     end
   end
 
