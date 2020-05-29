@@ -42,7 +42,7 @@ class CoordinateFetcherService
     def format_in_reach_waypoint(point)
       point_data = point.css('ExtendedData').children
       {
-        name: custom_inreach_names(point_data)
+        name: custom_inreach_names(point_data),
         latitude: point_data.at('[@name="Latitude"]').try(:text).try(:strip),
         longitude: point_data.at('[@name="Longitude"]').try(:text).try(:strip),
         elevation: elevation(point_data),
