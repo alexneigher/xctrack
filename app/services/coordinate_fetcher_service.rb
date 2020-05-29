@@ -1,4 +1,5 @@
 class CoordinateFetcherService
+  USERS_WITH_CUSTOM_NAMES_IDS = [153] #override default name rendering behaviors for privacy concerns
 
   def initialize(xml, user)
     @xml_data = xml
@@ -41,7 +42,7 @@ class CoordinateFetcherService
     def format_in_reach_waypoint(point)
       point_data = point.css('ExtendedData').children
       {
-        name: point_data.at('[@name="Name"]').try(:text).try(:strip).presence || 'User',
+        name: custom_inreach_names(point_data)
         latitude: point_data.at('[@name="Latitude"]').try(:text).try(:strip),
         longitude: point_data.at('[@name="Longitude"]').try(:text).try(:strip),
         elevation: elevation(point_data),
@@ -84,6 +85,15 @@ class CoordinateFetcherService
       return '' unless height_meters
 
       return "#{height_meters.to_i}m/ #{(height_meters.to_i * 3.280839895).to_i}ft"
+    end
+
+    def custom_inreach_names(point_data)
+      if @user.id.in?(USERS_WITH_CUSTOM_NAMES_IDS)
+        return @user.name
+      else
+        #fall back to using the name on the inreach if they have not asked for custom
+        return point_data.at('[@name="Name"]').try(:text).try(:strip).presence || 'User'
+      end
     end
 
 end
