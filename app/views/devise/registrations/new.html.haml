@@ -29,13 +29,12 @@
             %hr
             %label.form-group
               = f.radio_button :tracker_type, 'spot_user'
-              SPOT URL
-              .form-inline{style: 'margin-top:10px;'}
-                %span.hidden-xs
-                  http://share.findmespot.com/shared/faces/viewspots.jsp?glId=
-                %span.visible-xs{style: 'font-size: 10px;'}
-                  share.findmespot.com/shared/faces/viewspots.jsp?glId=
-                = f.text_field :spot_share_url, class: 'form-control radio-control'
+              SPOT URL (XML Feed ID)
+            %a{"data-toggle" => "modal", "data-target" => "#how-to-spot-modal", style: 'color:#428bca;'}
+              %i.fa.fa-info-circle
+              How to find this?
+
+            = f.text_field :spot_share_url, class: 'form-control radio-control', placeholder: 'ex: XEJFEFUFEL23847'
           .row
             .col-md-6.form-group
               %label Password
@@ -62,15 +61,41 @@
         .text-center
           %strong
             https://us0.inreach.garmin.com/feed/share/YOUR SHARE NAME
-          %br 
+          %br
           OR
           %br
           %strong
             https://share.garmin.com/Feed/Share/YOUR SHARE NAME
         %br
-        %p 
+        %p
           Find yours at
           = link_to "https://explore.garmin.com/Social","https://explore.garmin.com/Social", target: "_blank", style: 'color: #428bca;'
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} OK
+
+#how-to-spot-modal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        = image_tag "spot.png", style: 'width:100%;'
+        %hr
+        %p
+          %strong Step 1
+          %br
+          Log into your SPOT account and click on XML Feed
+        %p
+          %strong Step 2
+          %br
+          click on View Details
+        %p
+          %strong Step 3
+          %br
+          Copy what is inside the box of Your XML Feed ID
+        %p
+          %strong Step 4
+          %br
+          Make sure you have it set to "Active" and then make sure you have it "Public"
+
       .modal-footer
         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} OK
 
