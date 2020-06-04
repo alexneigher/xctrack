@@ -16,7 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'haml', '~> 4.0', '>= 4.0.7'
+gem "haml", ">= 5.0.0"
+
 gem 'httparty'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 

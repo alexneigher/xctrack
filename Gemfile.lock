@@ -92,7 +92,8 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    haml (4.0.7)
+    haml (5.1.2)
+      temple (>= 0.8.0)
       tilt
     httparty (0.16.2)
       multi_xml (>= 0.5.2)
@@ -216,6 +217,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -254,7 +256,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   font-awesome-rails
-  haml (~> 4.0, >= 4.0.7)
+  haml (>= 5.0.0)
   httparty
   jbuilder (~> 2.0)
   jquery-rails
