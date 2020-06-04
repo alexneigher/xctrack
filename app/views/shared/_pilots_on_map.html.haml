@@ -5,7 +5,7 @@
     - next unless user.most_recent_flight.present?
     - length = user.most_recent_flight.flight_length
     - straight_distance = user.most_recent_flight.straight_line_distance
-    
+
     - if user.waypoints.order(:timestamp).last&.timestamp.present?
       - last_point = distance_of_time_in_words((user.waypoints.order(:timestamp).last&.timestamp || Time.now), Time.now)
     - else
@@ -19,7 +19,7 @@
           -else
             %a.btn.btn-default.btn-default.btn-block.pilot-toggle-button.add-pilot-btn{data: {pilot_id: user.id}}
               &#43;
-            
+
         .col-xs-8.col-sm-8
           .text-center
             = link_to user_path(user) do
@@ -46,5 +46,5 @@
   %li.list-group-item
     Hmm, it must be unflyable today :(
 
-
+= link_to "Terms & Conditions", terms_and_conditions_path, class: "pull-left", style:'margin-top:10px;'
 = link_to 'FREE FLIGHT LAB', 'http://www.freeflightlab.org', target:'_blank', class: 'ffl-logo'

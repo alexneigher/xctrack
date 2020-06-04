@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/.well-known/brave-rewards-verification.txt', to: redirect('/brave-rewards-verification.txt')
 
+  get '/terms_and_conditions', to: "home#terms_and_conditions"
 
   namespace :api do
     resources :groups do
