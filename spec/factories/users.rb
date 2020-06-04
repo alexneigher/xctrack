@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    name "John Pilot"
+    name {"John Pilot"}
     sequence(:email) { |n| "john_smith_#{n}@gmail.com"}
-    password '1234567890'
-    in_reach_share_url 'https://share.delorme.com/feed/Share/AlexNeigher'
+    password {'1234567890'}
+    in_reach_share_url {'https://share.delorme.com/feed/Share/AlexNeigher'}
   end
 
   trait :with_waypoints do
