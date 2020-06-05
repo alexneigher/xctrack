@@ -9,5 +9,17 @@ class HomeController < ApplicationController
 
   end
 
+  def privacy_policy
+
+  end
+
+  def accept_terms_and_purchase
+    user = current_user
+
+    user.update(accepted_terms_and_privacy: true)
+
+    redirect_to root_path
+  end
+
 end
 

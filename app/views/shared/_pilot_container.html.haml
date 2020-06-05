@@ -1,13 +1,28 @@
+
 #pilots-container{class: ('hidden' if @users_on_map.any?)}
   .col-lg-4.col-md-6.col-xs-11.no-padding.pilot-container-block
-    %ul.list-group{style: 'margin: 0'}
-      = render 'shared/pilot_order_buttons'
-    .well
-      %ul.list-group{style: 'margin-bottom: 10px;'}
-        #pilot-names
-          = render partial: 'shared/pilots_on_map'
-      .row
-        - if @group.present?
-          .col-md-6.form-group
-            = link_to 'edit group', edit_group_path(@group), class: 'btn btn-sm btn-default btn-block'
+    -if current_user && !current_user.accepted_terms_and_privacy
+      - # someone is logged in, and they have not accepted the terms + privacy yet
+      .well{style:'padding: 20px; 0'}
+        %p
+          We've updated our
+          = link_to "Terms & Conditions", terms_and_conditions_path, target:"_blank", style: 'text-decoration:underline;'
+          &
+          = link_to "Privacy Policy", privacy_policy_path, target:"_blank", style: 'text-decoration:underline;'
+
+        %p Click the links above to read. Once you've read them, you can accept them by clicking the button below.
+
+        =link_to "I Accept", accept_terms_and_purchase_path, class: 'btn btn-primary', method: :put
+    - else
+
+      %ul.list-group{style: 'margin: 0'}
+        = render 'shared/pilot_order_buttons'
+      .well
+        %ul.list-group{style: 'margin-bottom: 10px;'}
+          #pilot-names
+            = render partial: 'shared/pilots_on_map'
+        .row
+          - if @group.present?
+            .col-md-6.form-group
+              = link_to 'edit group', edit_group_path(@group), class: 'btn btn-sm btn-default btn-block'
 

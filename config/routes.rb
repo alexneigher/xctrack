@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   get '/.well-known/brave-rewards-verification.txt', to: redirect('/brave-rewards-verification.txt')
 
   get '/terms_and_conditions', to: "home#terms_and_conditions"
-
+  get '/privacy_policy', to: "home#privacy_policy"
+  put "accept_terms_and_purchase", to: "home#accept_terms_and_purchase"
   namespace :api do
     resources :groups do
       get :most_recent_waypoints
