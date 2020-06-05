@@ -19,7 +19,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
     <%= favicon_link_tag "/favicon.ico" %>
-    
+
     <script data-ad-client="ca-pub-5155287976010304" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -46,12 +46,15 @@
             <%- if user_signed_in? %>
               <li style="margin-top: 6px;">
                 <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support XcTrack', '#46b798', 'W7W7EPPV');kofiwidget2.draw();</script>
-              </li> 
+              </li>
               <%= render partial: 'shared/pilot_container_toggle' %>
               <li class="visible-xs"><%= link_to "My Profile", user_path(current_user) %></li>
               <li class="visible-xs"><%= link_to "My Groups", groups_path %></li>
               <li role="separator" class="divider visible-xs"></li>
               <li class="visible-xs"><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
+              <li class="visible-xs"><%= link_to "Terms", terms_and_conditions_path %></li>
+              <li class="visible-xs"><%= link_to "Privacy Policy", privacy_policy_path %></li>
+
 
               <li class="dropdown hidden-xs">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %><span class="caret"></span></a>
@@ -61,13 +64,16 @@
                   <li><a href="mailto:aneigher@gmail.com">Contact Me</a></li>
                   <li role="separator" class="divider"></li>
                   <li><%= link_to("Logout", destroy_user_session_path, :method => :delete) %></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "Terms", terms_and_conditions_path %></li>
+                  <li><%= link_to "Privacy Policy", privacy_policy_path %></li>
 
                 </ul>
               </li>
             <% else %>
               <li style="margin-top: 6px;">
                 <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support XcTrack', '#46b798', 'W7W7EPPV');kofiwidget2.draw();</script>
-              </li> 
+              </li>
               <%= render partial: 'shared/pilot_container_toggle' %>
               <li><%= link_to('Sign Up', new_user_registration_path)  %></li>
               <li><%= link_to('Login', new_user_session_path)  %></li>

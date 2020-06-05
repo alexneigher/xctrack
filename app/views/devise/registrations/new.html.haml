@@ -44,9 +44,18 @@
               %label Confirm Password
               = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
           .form-group
+            %hr
             .row
               .col-md-6
+                %label
+                  = f.check_box :accepted_terms_and_privacy, required: true
+                I accept the
+                = link_to "Terms & Conditions", terms_and_conditions_path, target:"_blank", style: 'text-decoration:underline;'
+                and
+                = link_to "Privacy Policy", privacy_policy_path, target:"_blank", style: 'text-decoration:underline;'
+              .col-md-6
                 = f.submit "Sign up", class: 'btn btn-success'
+
         = render "devise/shared/links"
 
 

@@ -60,7 +60,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :in_reach_share_url, :spot_share_url, :tracker_type])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :in_reach_share_url, :spot_share_url, :tracker_type, :accepted_terms_and_privacy])
   end
 
   # def configure_account_update_params
@@ -69,7 +69,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    user_path(resource)
+    root_path
   end
 
   # The path used after sign up for inactive accounts.
