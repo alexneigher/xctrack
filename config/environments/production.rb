@@ -58,6 +58,9 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
+  config.action_mailer.default_url_options = { host: "xctrack.me" }
+  config.action_mailer.asset_host = 'https://xctrack.me'
+
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV['SENDGRID_USERNAME'],
     :password => ENV['SENDGRID_PASSWORD'],
