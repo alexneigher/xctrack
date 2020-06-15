@@ -1,0 +1,24 @@
+.row
+  .col-md-12
+    = bootstrap_flash
+    = devise_error_messages!
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default
+      .panel-heading
+        Forgot your password?
+      .panel-body
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          .form-group
+            .row
+              .col-md-12
+                %label Email
+                = f.email_field :email, autofocus: true, class: 'form-control'
+
+          .form-group
+            .row
+              .col-md-12
+                .actions
+                  = f.submit "Send me reset password instructions", class: 'btn btn-success'
+
+        = render "devise/shared/links"

@@ -15,6 +15,7 @@ Rails.application.configure do
 
   #mailer default urls
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :letter_opener
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -28,8 +29,8 @@ Rails.application.configure do
   config.action_dispatch.default_headers = {
       'X-Frame-Options' => 'ALLOWALL'
   }
-  
-  
+
+
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.

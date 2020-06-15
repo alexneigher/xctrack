@@ -31,6 +31,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "faker"
 
+gem 'letter_opener'
+
 gem 'airbrake', '~> 6.2'
 
 gem "font-awesome-rails"
