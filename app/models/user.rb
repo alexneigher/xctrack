@@ -27,9 +27,13 @@ class User < ApplicationRecord
   enum tracker_type: [ :in_reach_user, :spot_user ]
 
   def full_api_url
-    hour = self.groups.pluck(:id).include?(151) ? 200 : 24 #temp for kiwi search
+    if self.groups.pluck(:id).include?(151)
+      hour = (DateTime.now.to_time - DateTime.parse('22nd Aug 2020 00:05:06+07:00').to_time) / 1.hours
+    else
+      hour = 24
+    end #temp for kiwi search
 
-    d1 = formatted_datetime(hour.hours.ago)
+    d1 = formatted_datetime(hour.to_i.hours.ago)
     d2 = formatted_datetime(DateTime.current)
 
     if self.in_reach_user?
