@@ -30,7 +30,7 @@ class User < ApplicationRecord
     if self.groups.pluck(:id).include?(151)
       hour = (DateTime.now.to_time - DateTime.parse('22nd Aug 2020 10:05:06+07:00').to_time) / 1.hours
     else
-      hour = 24
+      hour = 12
     end #temp for kiwi search
 
     d1 = formatted_datetime(hour.to_i.hours.ago)
