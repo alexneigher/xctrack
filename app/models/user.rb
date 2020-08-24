@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   def full_api_url
     if self.groups.pluck(:id).include?(151)
-      hour = (DateTime.now.to_time - DateTime.parse('22nd Aug 2020 00:05:06+07:00').to_time) / 1.hours
+      hour = (DateTime.now.to_time - DateTime.parse('22nd Aug 2020 10:05:06+07:00').to_time) / 1.hours
     else
       hour = 24
     end #temp for kiwi search
