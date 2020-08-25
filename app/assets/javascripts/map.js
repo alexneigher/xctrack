@@ -7,7 +7,7 @@ $(function(){
   //bind click to enable location
   $('#toggleLocation').click(function(){
     $(this).html('working...');
-    
+
     if (navigator.geolocation) {
       options = {
         enableHighAccuracy: false,
@@ -165,9 +165,8 @@ function parse_text_for_link(text, latitude, longitude){
 function showPosition(position) {
   $('#toggleLocation').remove();
   var myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  
+
   if (typeof(customMarker) == 'undefined'){
-    console.log('first time');
     customMarker = new google.maps.Marker({
       position: myLatLng,
       icon:{
@@ -177,10 +176,9 @@ function showPosition(position) {
     });
 
   }else{
-    console.log('update it');
     customMarker.setPosition(myLatLng)
   }
-  
+
   bounds.extend(customMarker.position);
   map.fitBounds(bounds);
 }
