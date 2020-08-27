@@ -1,5 +1,6 @@
 module Api
   class GroupsController < ApplicationController
+    layout false
 
     def most_recent_waypoints
       @most_recent_waypoints = []
@@ -17,6 +18,10 @@ module Api
 
 
       render json: {last_known_waypoints: @most_recent_waypoints}
+    end
+
+    def sar_json
+      render file: 'public/trackpoints.json'
     end
 
   end
