@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :groups do
       get :most_recent_waypoints
+      get :all_sar_trackpoints
     end
   end
 

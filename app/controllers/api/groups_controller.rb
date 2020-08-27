@@ -19,5 +19,27 @@ module Api
       render json: {last_known_waypoints: @most_recent_waypoints}
     end
 
+    def all_sar_trackpoints
+      @most_recent_waypoints = []
+      @group = Group.find_by(params[:id])
+      users = @group.users
+
+      users.all.each do |user|
+        user.most_recent_flight&.destroy
+        user.reload
+
+        response = HTTParty.get(user.full_api_url).body
+        raw_xml = Nokogiri::XML(response)
+
+        CoordinateFetcherService.new(raw_xml, self).extract_coordinates
+      end
+
+      users.reload.each do |user|
+        @most_recent_waypoints << user.waypoints.order(:created_at)
+      end
+
+      render json: {data: @most_recent_waypoints}
+    end
+
   end
 end
