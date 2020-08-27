@@ -21,24 +21,24 @@ module Api
 
     def all_sar_trackpoints
       @most_recent_waypoints = []
-      @group = Group.find_by(params[:id])
+      @group = Group.find(params[:group_id])
       users = @group.users
 
       users.all.each do |user|
         user.most_recent_flight&.destroy
         user.reload
-
-        response = HTTParty.get(user.full_api_url).body
+        hour = (DateTime.now.to_time - DateTime.parse('22nd Aug 2020 10:05:06+07:00').to_time) / 1.hours
+        response = HTTParty.get(user.full_api_url(hour)).body
         raw_xml = Nokogiri::XML(response)
 
-        CoordinateFetcherService.new(raw_xml, self).extract_coordinates
+        CoordinateFetcherService.new(raw_xml, user).extract_coordinates
       end
 
       users.reload.each do |user|
         @most_recent_waypoints << user.waypoints.order(:created_at)
       end
 
-      render json: {data: @most_recent_waypoints}
+      render json: {data: @most_recent_waypoints.flatten}
     end
 
   end
