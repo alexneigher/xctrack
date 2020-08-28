@@ -44,4 +44,9 @@ task :populate_sar_file => :environment do
   file.puts(points)
   file.close
 
+  users.all.each do |u|
+    user.most_recent_flight&.destroy
+    user.reload
+    user.fetch_coordinates
+  end
 end
