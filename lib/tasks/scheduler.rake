@@ -18,7 +18,7 @@ end
 desc "Populate new trackpoints.json file hourly"
 task :populate_sar_file => :environment do
   @most_recent_waypoints = []
-  @group = Group.find(153)
+  @group = Group.find(154)
 
   users = @group.users
 

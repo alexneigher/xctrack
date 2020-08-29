@@ -31,7 +31,7 @@ class User < ApplicationRecord
       hour = hour
     elsif self.id == 889
       hour = (DateTime.now.to_time - DateTime.parse('22nd Aug 2020 10:05:06+07:00').to_time) / 1.hours
-    elsif self.groups.pluck(:id).include?(153)
+    elsif self.groups.pluck(:id).include?(154)
       hour = 1 #temp for short term tracking
     elsif self.groups.pluck(:id).include?(151)
       hour = (DateTime.now.to_time - DateTime.parse('22nd Aug 2020 10:05:06+07:00').to_time) / 1.hours
