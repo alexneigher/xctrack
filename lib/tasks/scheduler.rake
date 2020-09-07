@@ -45,7 +45,7 @@ task :populate_sar_file => :environment do
   s3 = Aws::S3::Client.new(
     access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
     secret_access_key: ENV.fetch('AWS_SECRET_KEY'),
-    region: 'us-east-1'
+    region: 'us-east-2'
   )
 
   #delete all other files in bucket
@@ -71,8 +71,6 @@ task :populate_sar_file => :environment do
     bucket: "xctrack",
     key: "trackpoints.json",
   })
-
-  bucket.put_object(file)
 
   users.all.each do |user|
     user.most_recent_flight&.destroy
