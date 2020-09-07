@@ -17,7 +17,6 @@ end
 
 desc "Populate new trackpoints.json file hourly"
 task :populate_sar_file => :environment do
-
   @most_recent_waypoints = []
   @group = Group.find(154)
 
@@ -40,7 +39,6 @@ task :populate_sar_file => :environment do
   end
 
   points = @most_recent_waypoints.flatten.to_json
-
 
   s3 = Aws::S3::Client.new(
     access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
