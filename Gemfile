@@ -31,6 +31,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "faker"
 
+gem 'dotenv-rails'
+
+gem 'aws-sdk-s3', '~> 1'
+
 gem 'letter_opener'
 
 gem 'airbrake', '~> 6.2'

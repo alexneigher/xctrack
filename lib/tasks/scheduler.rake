@@ -17,6 +17,7 @@ end
 
 desc "Populate new trackpoints.json file hourly"
 task :populate_sar_file => :environment do
+
   @most_recent_waypoints = []
   @group = Group.find(154)
 
@@ -40,9 +41,38 @@ task :populate_sar_file => :environment do
 
   points = @most_recent_waypoints.flatten.to_json
 
-  file = File.open("public/trackpoints.json", "w")
+
+  s3 = Aws::S3::Client.new(
+    access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
+    secret_access_key: ENV.fetch('AWS_SECRET_KEY'),
+    region: 'us-east-1'
+  )
+
+  #delete all other files in bucket
+  s3.delete_objects({
+    bucket: "xctrack",
+    delete: {
+      objects: [
+        {
+          key: "trackpoints.json",
+        },
+      ],
+      quiet: false,
+    },
+  })
+
+  file = File.open("trackpoints.json", "w")
   file.puts(points)
   file.close
+
+  s3.put_object({
+    acl: "public-read",
+    body: file,
+    bucket: "xctrack",
+    key: "trackpoints.json",
+  })
+
+  bucket.put_object(file)
 
   users.all.each do |user|
     user.most_recent_flight&.destroy

@@ -18,3 +18,6 @@
 
 # Vim swap files
 *.sw*
+
+
+.env
