@@ -19,7 +19,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem "haml", ">= 5.0.0"
 
 gem 'httparty'
-gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'nokogiri', '~> 1.11'
 
 gem "twitter-bootstrap-rails"
 # Use jquery as the JavaScript library
