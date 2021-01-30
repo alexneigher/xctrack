@@ -17,3 +17,8 @@
     .pilot
       - pilots.each_with_index do |waypoint, i|
         .waypoint{data:{latitude: waypoint.latitude, longitude: waypoint.longitude, name:  waypoint.name, velocity:  waypoint.velocity, timestamp: waypoint.timestamp, elevation:  waypoint.elevation, text: waypoint.text, counter: i + 1}}
+
+#turnpoints
+  - if @group.present? && @group.turnpoints.any?
+    - @group.turnpoints.active.each do |turnpoint|
+      .turnpoint{data: {latitude: turnpoint.latitude, longitude: turnpoint.longitude, name:  turnpoint.name, radius: turnpoint.radius} }

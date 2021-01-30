@@ -4,6 +4,8 @@ class Group < ApplicationRecord
 
   accepts_nested_attributes_for :user_groupings
 
+  has_many :turnpoints
+
   validates :name, presence: true
 end
 

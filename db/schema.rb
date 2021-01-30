@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200604160644) do
+ActiveRecord::Schema.define(version: 20210130042238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,19 @@ ActiveRecord::Schema.define(version: 20200604160644) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "turnpoints", force: :cascade do |t|
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.decimal  "radius"
+    t.integer  "sort_order"
+    t.string   "name"
+    t.integer  "group_id"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_turnpoints_on_group_id", using: :btree
   end
 
   create_table "user_groupings", force: :cascade do |t|
@@ -72,4 +85,5 @@ ActiveRecord::Schema.define(version: 20200604160644) do
     t.index ["most_recent_flight_id"], name: "index_waypoints_on_most_recent_flight_id", using: :btree
   end
 
+  add_foreign_key "turnpoints", "groups"
 end

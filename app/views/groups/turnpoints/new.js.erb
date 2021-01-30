@@ -1,0 +1,4 @@
+$('#editModal .modal-body')
+  .html('<%= j(render partial: "groups/turnpoints/form", locals: {edit: false}) %>');
+
+$('#editModal').modal('show');

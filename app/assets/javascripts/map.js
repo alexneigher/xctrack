@@ -39,6 +39,8 @@ function initialize() {
   var waypoints = 0;
   map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
+  /////// start ADDING PILOTS TO MAP //////
+
   $('.pilot').each(function(){
     waypoints = 0
     var flight_path_coords = []
@@ -131,6 +133,48 @@ function initialize() {
     map.fitBounds(bounds);
   }
 
+  /////// END ADDING PILOTS TO MAP //////
+
+  ////// START ADDING TURNPOINTS TO MAP /////
+
+  $('.turnpoint').each(function(){
+
+    var lat = $(this).data("latitude");
+    var lng = $(this).data("longitude");
+    var name = $(this).data("name");
+    var radius_meters = $(this).data('radius');
+
+    var turnpointCircle = new google.maps.Circle({
+      strokeColor: "#FF0000",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#FF0000",
+      fillOpacity: 0.5,
+      map,
+      center: { lat: lat, lng: lng },
+      radius: parseInt(radius_meters),
+    });
+
+    new google.maps.Marker({
+      position: { lat: lat, lng: lng },
+      label: {
+        color: '#ffffff',
+        fontSize: '15`px',
+        text: name
+      },
+      map: map,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 0
+      }
+    });
+
+    bounds.union(turnpointCircle.getBounds());
+
+    map.fitBounds(bounds);
+  })
+
+  /////// END ADDING TURNPOINTS TO MAP //////
   removeLoading();
 }
 

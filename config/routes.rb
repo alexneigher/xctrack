@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :groups do
     put ':id', action: :show, as: :select
     post 'add_user/:user_id', action: :add_user, as: :add_user
+    resources :turnpoints, controller: 'groups/turnpoints'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

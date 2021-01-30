@@ -1,0 +1,70 @@
+- if edit
+  = form_for @turnpoint, url: group_turnpoint_path(@group, @turnpoint) do |f|
+    .form-group
+      .row
+        .col-md-6
+          %label Name
+          = f.text_field :name, class: 'form-control', required: true
+        .col-md-6
+
+          %label{style: 'padding-top:20px;'}
+            = f.check_box :active
+            Active?
+      %hr
+    .form-group
+      .row
+        .col-md-6
+          %label Latitude
+          = f.number_field :latitude, class: 'form-control', required: true, step: 0.00000000000001
+        .col-md-6
+          %label Longitude
+          = f.number_field :longitude, class: 'form-control', required: true, step: 0.00000000000001
+      %hr
+    .form-group
+      .row
+        .col-md-6
+          %label Radius (meters)
+          = f.number_field :radius, class: 'form-control', required: true
+        .col-md-6
+          %label Sort Order
+          = f.number_field :sort_order, class: 'form-control'
+      %hr
+
+    .row
+      .col-md-12
+        = f.submit 'Update', class: 'btn btn-primary btn-sm'
+- else
+  = form_for :turnpoint, url: group_turnpoints_path(@group) do |f|
+    .form-group
+      .row
+        .col-md-6
+          %label Name
+          = f.text_field :name, class: 'form-control', required: true
+        .col-md-6
+
+          %label{style: 'padding-top:20px;'}
+            = f.check_box :active
+            Active?
+      %hr
+    .form-group
+      .row
+        .col-md-6
+          %label Latitude
+          = f.number_field :latitude, class: 'form-control', required: true, step: 0.00000000000001
+        .col-md-6
+          %label Longitude
+          = f.number_field :longitude, class: 'form-control', required: true, step: 0.00000000000001
+      %hr
+    .form-group
+      .row
+        .col-md-6
+          %label Radius (meters)
+          = f.number_field :radius, class: 'form-control', required: true
+        .col-md-6
+          %label Sort Order
+          = f.number_field :sort_order, class: 'form-control'
+      %hr
+
+    .row
+      .col-md-12
+        = f.submit 'Create', class: 'btn btn-primary btn-sm'

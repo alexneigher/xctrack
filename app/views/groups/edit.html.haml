@@ -5,3 +5,57 @@
   %h1 Edit Group
   = form_for @group, url: group_path(@group), method: :put do |f|
     = render :partial => 'form', locals: {f: f}
+
+%h3 Turnpoints
+
+= link_to new_group_turnpoint_path(@group), remote: true, class: 'btn btn-sm btn-secondary' do
+  Add New
+
+.list-group
+  - @group.turnpoints.sorted.each do |turnpoint|
+    .list-group-item
+
+      %strong= turnpoint.name
+
+      %br
+
+      %em Latitude:
+      #{turnpoint.latitude}
+
+      %br
+
+      %em Longitude:
+      #{turnpoint.longitude}
+      %br
+
+      %em Radius (meters):
+      #{turnpoint.radius}
+
+      %br
+
+      %em Sort Order:
+      #{turnpoint.sort_order}
+
+      %br
+
+      %em Active
+      #{turnpoint.active}
+
+      %br
+      = link_to edit_group_turnpoint_path(@group, turnpoint), remote: true do
+        %i.fa.fa-pencil
+        edit
+      || ------ ||
+
+      = link_to group_turnpoint_path(@group, turnpoint), method: :delete, data: {confirm: 'Are you sure you want to delete this turnpoint?'} do
+        %i.fa.fa-trash.text-danger
+        destroy
+
+
+
+
+#editModal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+
