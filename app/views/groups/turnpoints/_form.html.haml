@@ -5,8 +5,11 @@
         .col-md-6
           %label Name
           = f.text_field :name, class: 'form-control', required: true
-        .col-md-6
+        .col-md-3
+          %label Color
+          = f.select :color, options_for_select([['Red', '#FF0000'], ['Green', '#00FF00'], ['Yellow', '#FFFF00']], @turnpoint.color), {}, class: 'form-control'
 
+        .col-md-3
           %label{style: 'padding-top:20px;'}
             = f.check_box :active
             Active?
@@ -40,7 +43,10 @@
         .col-md-6
           %label Name
           = f.text_field :name, class: 'form-control', required: true
-        .col-md-6
+        .col-md-3
+          %label Color
+          = f.select :color, options_for_select([['Red', '#FF0000'], ['Green', '#00FF00'], ['Yellow', '#FFFF00']]), {}, class: 'form-control'
+        .col-md-3
 
           %label{style: 'padding-top:20px;'}
             = f.check_box :active

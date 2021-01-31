@@ -21,4 +21,4 @@
 #turnpoints
   - if @group.present? && @group.turnpoints.any?
     - @group.turnpoints.active.each do |turnpoint|
-      .turnpoint{data: {latitude: turnpoint.latitude, longitude: turnpoint.longitude, name:  turnpoint.name, radius: turnpoint.radius} }
+      .turnpoint{data: {latitude: turnpoint.latitude, longitude: turnpoint.longitude, name:  turnpoint.name, radius: turnpoint.radius, color: turnpoint.color} }

@@ -36,7 +36,7 @@ module Groups
 
     private
       def turnpoint_params
-        params.require(:turnpoint).permit(:name, :latitude, :longitude, :radius, :active, :sort_order)
+        params.require(:turnpoint).permit(:name, :latitude, :longitude, :radius, :active, :sort_order, :color)
       end
 
   end

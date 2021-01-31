@@ -143,12 +143,13 @@ function initialize() {
     var lng = $(this).data("longitude");
     var name = $(this).data("name");
     var radius_meters = $(this).data('radius');
+    var color = $(this).data("color");
 
     var turnpointCircle = new google.maps.Circle({
-      strokeColor: "#FF0000",
+      strokeColor: color,
       strokeOpacity: 0.8,
       strokeWeight: 2,
-      fillColor: "#FF0000",
+      fillColor: color,
       fillOpacity: 0.5,
       map,
       center: { lat: lat, lng: lng },

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210130042238) do
+ActiveRecord::Schema.define(version: 20210131022954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20210130042238) do
     t.boolean  "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "color"
     t.index ["group_id"], name: "index_turnpoints_on_group_id", using: :btree
   end
 
