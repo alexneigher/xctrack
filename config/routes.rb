@@ -21,11 +21,14 @@ Rails.application.routes.draw do
   get '/terms_and_conditions', to: "home#terms_and_conditions"
   get '/privacy_policy', to: "home#privacy_policy"
   put "accept_terms_and_purchase", to: "home#accept_terms_and_purchase"
+
   namespace :api do
     resources :groups do
       get :most_recent_waypoints
       get :sar_json
     end
+
+    post :external_source_tracker, to: 'external_trackpoints#create'
   end
 
 end
