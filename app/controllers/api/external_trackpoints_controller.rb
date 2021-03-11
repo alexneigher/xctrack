@@ -5,7 +5,25 @@ module Api
 
     def create
       puts params.inspect
-      message_id = params["gatewayMessageId"]
+
+      device_id = params["deviceId"]
+      user = User.custom_inreach_tracking_strategy.where(in_reach_share_url: device_id)&.last
+
+      unless user.present?
+        render json: { messageId: params["gatewayMessageId"], response: "Bad Message", error: "Unable to find user for deviceId #{device_id}" } and return
+      end
+
+      most_recent_flight = user.most_recent_flight.presence || user.create_most_recent_flight
+
+      waypoint = most_recent_flight.waypoints.create({
+        elevation: params["altitude"],
+        latitude: params["latitude"],
+        longitude: params["longitude"],
+        name: user.name,
+        text: "",
+        velocity: params["speed"],
+        timestamp: params["gatewaySendDateTime"]
+      })
       # {
       #   "origin": "Device",
       #   "gatewayMessageId": 1218537031,
@@ -25,7 +43,7 @@ module Api
       #   ]
       # }
 
-      render json: { messageId: message_id, response: "OK", error: "success" }
+      render json: { messageId: params["gatewayMessageId"], response: "OK", error: "success" }
     end
   end
 end
