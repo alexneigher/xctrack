@@ -15,7 +15,7 @@ module Api
 
       most_recent_flight = user.most_recent_flight.presence || user.create_most_recent_flight
 
-      if params["latitude"].blank? || params["longitude"].blank?
+      if params["latitude"].blank? || params["longitude"].blank? || params["latitude"]&.to_i&.zero? || params["longitude"]&.to_i&.zero?
         render json: { messageId: params["gatewayMessageId"], response: "Bad Message", error: "Longitude and Latitude are required params" } and return
       end
 
