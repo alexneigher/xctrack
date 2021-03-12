@@ -15,6 +15,10 @@ module Api
 
       most_recent_flight = user.most_recent_flight.presence || user.create_most_recent_flight
 
+      if params["latitude"].blank? || params["longitude"].blank?
+        render json: { messageId: params["gatewayMessageId"], response: "Bad Message", error: "Longitude and Latitude are required params" } and return
+      end
+
       waypoint = most_recent_flight.waypoints.create({
         elevation: params["altitude"],
         latitude: params["latitude"],
@@ -22,7 +26,7 @@ module Api
         name: user.name,
         text: "",
         velocity: params["speed"],
-        timestamp: params["gatewaySendDateTime"]
+        timestamp: params["deviceSendDateTime"]
       })
       # {
       #   "origin": "Device",
