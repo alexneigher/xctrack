@@ -22,8 +22,9 @@
       = f.submit nil, :class => 'btn btn-primary'
 
     .form-group
-      =link_to group_path(@group), class: 'btn btn-success btn-sm' do
-        View Group Map
+      if @group.persisted?
+        =link_to group_path(@group), class: 'btn btn-success btn-sm' do
+          View Group Map
   - if @edit
     .col-md-6
       %h1
