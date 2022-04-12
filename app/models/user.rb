@@ -31,13 +31,6 @@ class User < ApplicationRecord
   enum tracker_type: [ :in_reach_user, :spot_user ]
 
   def full_api_url
-    #this person is in the Wanaka H&F contest, set their lookback to the group lookback
-    if self.groups.include?(Group.find(207))
-      lookback_duration = Group.find(207).lookback_duration.to_i
-    else
-      lookback_duration = 12
-    end
-
     d1 = formatted_datetime(lookback_duration.hours.ago)
     d2 = formatted_datetime(DateTime.current)
 

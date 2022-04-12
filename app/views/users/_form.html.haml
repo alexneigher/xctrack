@@ -26,24 +26,31 @@
         .small.text-muted
           If you uncheck this box, xctrack will not attempt to fetch data from your tracker. You can use this feature if you are going on vacation, using your tracker for non-flying purposes, or do not want to share your tracking with the public.
 
-    .col-md-6
-      .form-group.well
-        %label
-          = f.radio_button :tracker_type, 'in_reach_user', checked: true
-          InReach Share URL
-          = f.text_field :in_reach_share_url, placeholder: 'https://share.garmin.com/Feed/Share/YOUR_URL_HERE', class: 'form-control radio-control'
-        %hr
-        %label
-          = f.radio_button :tracker_type, 'spot_user'
-          SPOT URL
-          .form-inline{style: 'margin-top:10px;'}
-            %span.hidden-xs
-              XML Feed ID
-            %span.visible-xs{style: 'font-size: 10px;'}
-              XML Feed ID
+    .col-md-6.well
+      .row
+        .col-md-6
+          .form-group
+            %label
+              = f.radio_button :tracker_type, 'in_reach_user', checked: true
+              InReach Share URL
+              = f.text_field :in_reach_share_url, placeholder: 'https://share.garmin.com/Feed/Share/YOUR_URL_HERE', class: 'form-control radio-control'
+            %hr
+            %label
+              = f.radio_button :tracker_type, 'spot_user'
+              SPOT URL
+              .form-inline{style: 'margin-top:10px;'}
+                %span.hidden-xs
+                  XML Feed ID
+                %span.visible-xs{style: 'font-size: 10px;'}
+                  XML Feed ID
 
-            = f.text_field :spot_share_url, class: 'form-control radio-control'
-
+                = f.text_field :spot_share_url, class: 'form-control radio-control'
+        .col-md-6
+          %label
+            Lookback Duration
+          = f.select :lookback_duration, options_for_select(['12', '24', '48'], @user.lookback_duration), {}, class: 'form-control'
+          %small
+            How many hours should the system remember your waypoints? (Most people use 12 hours)
   .form-group
     .row
       .col-lg-10

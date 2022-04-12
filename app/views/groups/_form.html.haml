@@ -15,9 +15,7 @@
         .col-md-6
           %label Name
           = f.text_field :name, class: 'form-control'
-        .col-md-6
-          %label Lookback Period
-          = f.select :lookback_duration, options_for_select(['12', '24', '48'], @group.lookback_duration), {}, class: 'form-control'
+
     .form-group
       = f.submit nil, :class => 'btn btn-primary'
 

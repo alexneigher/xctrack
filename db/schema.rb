@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210311042048) do
+ActiveRecord::Schema.define(version: 20220412005435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "lookback_duration", default: 12
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "most_recent_flights", force: :cascade do |t|
@@ -71,6 +70,7 @@ ActiveRecord::Schema.define(version: 20210311042048) do
     t.boolean  "tracking_enabled",                 default: true
     t.boolean  "accepted_terms_and_privacy",       default: false
     t.boolean  "custom_inreach_tracking_strategy", default: false
+    t.integer  "lookback_duration",                default: 12
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 

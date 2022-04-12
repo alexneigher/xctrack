@@ -85,6 +85,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :in_reach_share_url, :spot_share_url, :password, :password_confirmation, :tracker_type, :tracking_enabled)
+      params.require(:user).permit(:name, :in_reach_share_url, :lookback_duration, :spot_share_url, :password, :password_confirmation, :tracker_type, :tracking_enabled)
     end
 end

@@ -66,7 +66,7 @@ class GroupsController < ApplicationController
 
   private
     def group_params
-      params.require(:group).permit(:name, :lookback_duration, user_grouping_ids: [])
+      params.require(:group).permit(:name, user_grouping_ids: [])
     end
 
 end
