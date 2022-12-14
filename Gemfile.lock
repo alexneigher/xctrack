@@ -139,7 +139,7 @@ GEM
       tilt
     letter_opener (1.7.0)
       launchy (~> 2.2)
-    loofah (2.5.0)
+    loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
