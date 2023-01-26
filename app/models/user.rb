@@ -66,7 +66,7 @@ class User < ApplicationRecord
 
   private
     def valid_in_reach_share_url
-      matches = in_reach_share_url&.downcase&.match('/feed\/share/').try(:[], 0)
+      matches = in_reach_share_url&.downcase&.match('https:\/\/.*(f|F)eed\/(s|S)hare').try(:[], 0)
       if matches.present?
         self.in_reach_share_url = in_reach_share_url.strip
       else
