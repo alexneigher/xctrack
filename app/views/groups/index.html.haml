@@ -23,7 +23,8 @@
         %td
           - if group.users.includes(current_user)
             = link_to 'Edit', edit_group_path(group), class: 'btn btn-default btn-xs'
-            = link_to 'Delete', group_path(group), class: 'btn btn-danger btn-xs',  :method => :delete,:data => { :confirm => 'Deleting this group will remove it for all members. Continue?'}
+            - if current_user.admin?
+              = link_to 'Delete', group_path(group), class: 'btn btn-danger btn-xs',  :method => :delete,:data => { :confirm => 'Deleting this group will remove it for all members. Continue?'}
 .page-header
   %h1
     All Groups
