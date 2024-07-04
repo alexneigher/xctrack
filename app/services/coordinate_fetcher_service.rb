@@ -12,13 +12,13 @@ class CoordinateFetcherService
     if @user.in_reach_user?
       #loop through specific in reach xml format
       @xml_data.css('Placemark').each do |point|
-        @most_recent_flight.waypoints.create!( format_in_reach_waypoint(point) )
+        @most_recent_flight.waypoints.create( format_in_reach_waypoint(point) )
       end
 
     else
       #loop through spot specific xml format
       @xml_data.xpath('//message').each do |point|
-        @most_recent_flight.waypoints.create!( format_spot_waypoint(point) )
+        @most_recent_flight.waypoints.create( format_spot_waypoint(point) )
       end
     end
 
