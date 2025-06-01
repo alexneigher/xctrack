@@ -25,8 +25,6 @@ class User < ApplicationRecord
   scope :with_waypoints, lambda { joins(most_recent_flight: :waypoints).uniq }
   scope :tracking_enabled, -> { where(tracking_enabled: true) }
 
-  #temporary used for the wanaka hike and fly contest
-  scope :custom_inreach_tracking_strategy, -> { where(custom_inreach_tracking_strategy: true) }
 
   enum tracker_type: [ :in_reach_user, :spot_user ]
 
@@ -50,7 +48,7 @@ class User < ApplicationRecord
 
 
   def fetch_coordinates
-    if most_recent_flight.present? && (most_recent_flight.created_at > 10.minutes.ago) || custom_inreach_tracking_strategy
+    if most_recent_flight.present? && (most_recent_flight.created_at > 10.minutes.ago)
       # dont get new data
       # just render most recent flight
 
