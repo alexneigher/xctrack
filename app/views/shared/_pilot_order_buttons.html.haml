@@ -1,9 +1,19 @@
-.list-group-item
+.list-group-item{style: 'padding-top:0'}
+  .row.bg-danger{style: 'margin-bottom: 10px;'}
+    .col-12{style:'padding: 5px;'}
+      Hello Pilots! XcTrack is having busiest flying season ever. This means our costs have gone up faster than a summer thermal.
+      %strong
+        I need your help keeping the site up and running.
+      If you use XcTrack,
+      %a{style:'color:#428bca;text-decoration:underline', href: 'https://ko-fi.com/alexneigher', target: '_blank'}
+        please consider donating here.
+      If I am unable to meet the costs, I will be sunsetting XcTrack within the next few months.
+
   .row
     .col-xs-6
       #updateMapButton.btn.btn-primary.btn-block{onclick: "$('#pilot-names form').submit();", class: (' disabled' unless @users_on_map.any?)}
         Show Map
-      
+
     .col-xs-6
       %select.form-control{onchange: "pickGroup($(this));"}
         %option{selected: 'selected', data: {url: root_path } }
@@ -16,8 +26,8 @@
 
         %option{data: {url: new_group_path}}
           = "New Group"
- 
-    
+
+
 :javascript
     function pickGroup(el){
       var $this = el
